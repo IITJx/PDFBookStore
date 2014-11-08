@@ -19,7 +19,7 @@
 						<a class="close" data-dismiss="alert">&times;</a>Welcome, <b>${loggedUser}</b>
 					</div>
 				</c:if>
-				
+
 				<c:if test="${logoutMessage!=null}">
 					<div class="alert alert-success message">
 						<a class="close" data-dismiss="alert">&times;</a>${logoutMessage}

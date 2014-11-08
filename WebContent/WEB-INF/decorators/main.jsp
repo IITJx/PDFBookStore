@@ -75,10 +75,10 @@ body {
 					<li><a href="home">Home</a></li>
 					<li><a href="#">Books</a></li>
 					<li><a href="#">Contact</a></li>
-					<li><a href="#">Help</a></li>
 					<c:if test="${user.getType()=='Publisher'}">
 						<li><a href="dashboard">Dashboard</a></li>
 					</c:if>
+					<li><a href="#">Help</a></li>
 				</ul>
 				<c:if test="${session==null}">
 					<div class="pull-right">

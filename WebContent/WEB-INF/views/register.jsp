@@ -29,10 +29,12 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="confirm-password" class="control-label col-md-3">Confirm Password</label>
+						<label for="confirm-password" class="control-label col-md-3">Confirm
+							Password</label>
 						<div class="col-md-4">
-							<input type="password" name="confirm-password" class="form-control"
-								required="true" placeholder="at least 6 characters..." />
+							<input type="password" name="confirm-password"
+								class="form-control" required="true"
+								placeholder="at least 6 characters..." />
 						</div>
 					</div>
 					<div class="form-group">
@@ -54,7 +56,7 @@
 					<c:if test="${message!=null}">
 						<div class="alert alert-danger message">
 							<a href="#" class="close" data-dismiss="alert">&times;</a>
-							<p> ${message}</p>
+							<p>${message}</p>
 						</div>
 					</c:if>
 				</form>
