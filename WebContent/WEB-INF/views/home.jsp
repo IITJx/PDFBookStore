@@ -25,6 +25,11 @@
 						<a class="close" data-dismiss="alert">&times;</a>${logoutMessage}
 					</div>
 				</c:if>
+				<c:if test="${registrationSuccess!=null}">
+					<div class="alert alert-success message">
+						<a class="close" data-dismiss="alert">&times;</a>${registrationSuccess}
+					</div>
+				</c:if>
 
 				<div class="jumbotron"
 					style="background-image: url('<c:url value="/resources/images/TitlePage.jpg"/>');">
