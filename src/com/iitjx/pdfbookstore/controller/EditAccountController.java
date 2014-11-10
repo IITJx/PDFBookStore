@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.*;
+
 import com.iitjx.pdfbookstore.domain.*;
 import com.iitjx.pdfbookstore.service.*;
 import com.iitjx.pdfbookstore.dao.*;
@@ -15,6 +17,7 @@ import com.iitjx.pdfbookstore.dao.*;
 @WebServlet("/edit-account")
 public class EditAccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger log = LoggerFactory.getLogger(EditAccountController.class);
 
 	private final String Password_Parameter = "old-password";
 	private final String New_Password_Parameter = "new-password";
@@ -23,6 +26,7 @@ public class EditAccountController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		log.debug("serving get request");
 		getServletContext().getRequestDispatcher(
 				"/WEB-INF/views/edit-account.jsp").forward(req, resp);
 	}
@@ -30,6 +34,7 @@ public class EditAccountController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		log.debug("serving post request");
 		User user = (User) req.getSession().getAttribute("user");
 		String oldPassword = (String) req.getParameter(Password_Parameter);
 		String newPassword = (String) req.getParameter(New_Password_Parameter);

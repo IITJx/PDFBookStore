@@ -8,12 +8,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.iitjx.pdfbookstore.domain.*;
 import com.iitjx.pdfbookstore.service.*;
 
 @WebServlet("/register")
 public class RegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
+	
 	private final String User_Name_Parameter = "username";
 	private final String Password_Parameter = "password";
 	private final String User_Type_Parameter = "type";
@@ -21,11 +26,13 @@ public class RegistrationController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		log.debug("serving get request");
 		getServletContext().getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		log.debug("serving post request");
 		RegistrationService registration = new RegistrationService();
 		User user = new User();
 		String userName = request.getParameter(User_Name_Parameter);
