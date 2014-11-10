@@ -40,6 +40,7 @@
 							<button class="btn btn-default" type="reset">Clear</button>
 						</div>
 					</div>
+					<div class="col-md-offset-2">Don't have an account? <a href="register">Register Here!</a></div>
 					<c:if test="${message!=null}">
 						<div class="alert alert-warning">
 							<a href="#" class="close" data-dismiss="alert">&times;</a>
