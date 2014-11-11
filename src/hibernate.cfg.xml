@@ -32,6 +32,7 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<mapping class="com.iitjx.pdfbookstore.domain.User" />
+		<mapping class="com.iitjx.pdfbookstore.domain.Book" />
 
 	</session-factory>
 </hibernate-configuration>

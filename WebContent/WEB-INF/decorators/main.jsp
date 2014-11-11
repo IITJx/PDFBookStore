@@ -113,12 +113,12 @@ body {
 	<c:if test="${session==true && user.getType()=='Publisher'}">
 		<div class="sidebar" id="sideBar">
 			<ul class="nav nav-sidebar">
-				<li class="active"><a href="#">Overview</a></li>
+				<li class="active"><a href="dashboard">Overview</a></li>
 				<li><a href="#" data-toggle="collapse" data-target="#bookMenu"
 					id="dashBooks">Books &nbsp;<span
 						class="fa fa-angle-double-right" id="dashDropdown"></span></a>
 					<ul class="nav collapse" id="bookMenu">
-						<li><a href="#">&nbsp;&nbsp;&nbsp;<i
+						<li><a href="add-book">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-plus-square"></i> Add New Book
 						</a></li>
 						<li><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i>
