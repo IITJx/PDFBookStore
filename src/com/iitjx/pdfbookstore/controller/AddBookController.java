@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.iitjx.pdfbookstore.dao.*;
 import com.iitjx.pdfbookstore.domain.*;
 import com.iitjx.pdfbookstore.service.*;
 
@@ -21,12 +20,11 @@ import com.iitjx.pdfbookstore.service.*;
 @MultipartConfig
 public class AddBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String Book_Name_Parameter = "bookName";
-	private final String Author_Name_Parameter = "author";
-	private final String Category_Name_Parameter = "category";
-	private final String ISBN_Parameter = "ISBN";
-	private final String Description_Parameter = "description";
-	private final String SAVE_DIR = "uploadFiles";
+	private final String BOOK_NAME_PARAMETER = "bookName";
+	private final String AUTHOR_NAME_PARAMETER = "author";
+	private final String CATEGORY_NAME_PARAMETER = "category";
+	private final String ISBN_PARAMETER = "ISBN";
+	private final String DESCRIPTION_PARAMETER = "description";
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -38,11 +36,11 @@ public class AddBookController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		Book book = new Book();
 		AddBookService bookController = new AddBookService();
-		book.setBookName(request.getParameter(Book_Name_Parameter));
-		book.setAuthorName(request.getParameter(Author_Name_Parameter));
-		book.setCategory(request.getParameter(Category_Name_Parameter));
-		book.setDescription(request.getParameter(Description_Parameter));
-		book.setISBN(request.getParameter(ISBN_Parameter));
+		book.setBookName(request.getParameter(BOOK_NAME_PARAMETER));
+		book.setAuthorName(request.getParameter(AUTHOR_NAME_PARAMETER));
+		book.setCategory(request.getParameter(CATEGORY_NAME_PARAMETER));
+		book.setDescription(request.getParameter(DESCRIPTION_PARAMETER));
+		book.setISBN(request.getParameter(ISBN_PARAMETER));
 		book.setInsertionDate(new Date().toString());
 
 		User user = (User) request.getSession().getAttribute("user");

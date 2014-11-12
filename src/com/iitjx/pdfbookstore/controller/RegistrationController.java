@@ -19,10 +19,10 @@ public class RegistrationController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
 	
-	private final String User_Name_Parameter = "username";
-	private final String Password_Parameter = "password";
-	private final String User_Type_Parameter = "type";
-	private final String Confirmed_Password_Parameter = "confirm-password";
+	private final String USER_NAME_PARAMETER = "username";
+	private final String PASSWORD_PARAMETER = "password";
+	private final String USER_TYPE_PARAMETER = "type";
+	private final String CONFIRM_PASSWORD_PARAMETER = "confirm-password";
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -35,11 +35,11 @@ public class RegistrationController extends HttpServlet {
 		log.debug("serving post request");
 		RegistrationService registration = new RegistrationService();
 		User user = new User();
-		String userName = request.getParameter(User_Name_Parameter);
-		String password = request.getParameter(Password_Parameter);
-		String type = request.getParameter(User_Type_Parameter);
+		String userName = request.getParameter(USER_NAME_PARAMETER);
+		String password = request.getParameter(PASSWORD_PARAMETER);
+		String type = request.getParameter(USER_TYPE_PARAMETER);
 		String confirmedPassword = request
-				.getParameter(Confirmed_Password_Parameter);
+				.getParameter(CONFIRM_PASSWORD_PARAMETER);
 		EncryptionService encryptionService = new EncryptionService();
 		user.setUserName(userName);
 		user.setPassword(encryptionService.encryptPassword(password));

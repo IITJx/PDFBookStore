@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.SendResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +21,8 @@ public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 	
-	private final String User_Name_Parameter = "username";
-	private final String Password_Parameter = "password";
+	private final String USER_NAME_PARAMETER = "username";
+	private final String PASSWORD_PARAMETER = "password";
 	
 
 	protected void doGet(HttpServletRequest request,
@@ -38,8 +37,8 @@ public class LoginController extends HttpServlet {
 		log.debug("serving post request");
 		LoginService loginController = new LoginService();
 		if (!loginController.validateLogin(
-				request.getParameter(User_Name_Parameter),
-				request.getParameter(Password_Parameter))) {
+				request.getParameter(USER_NAME_PARAMETER),
+				request.getParameter(PASSWORD_PARAMETER))) {
 			request.setAttribute("message",
 					"User Name/Password Mismatch. Please try again.");
 			getServletContext()
@@ -48,7 +47,7 @@ public class LoginController extends HttpServlet {
 		} else {
 			UserDAO userDAO = new UserDAO();
 			User user = userDAO.getUserByUserName(request
-					.getParameter(User_Name_Parameter));
+					.getParameter(USER_NAME_PARAMETER));
 			HttpSession session = request.getSession();
 			session.setMaxInactiveInterval(0);
 			session.setAttribute("session", true);

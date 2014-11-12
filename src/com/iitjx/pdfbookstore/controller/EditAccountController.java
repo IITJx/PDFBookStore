@@ -19,9 +19,9 @@ public class EditAccountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = LoggerFactory.getLogger(EditAccountController.class);
 
-	private final String Password_Parameter = "old-password";
-	private final String New_Password_Parameter = "new-password";
-	private final String Confirmed_Password_Parameter = "confirm-password";
+	private final String PASSWORD_PARAMETER = "old-password";
+	private final String NEW_PASSWORD_PARAMETER = "new-password";
+	private final String CONFIRMED_PASSWORD_PARAMETER = "confirm-password";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -36,10 +36,10 @@ public class EditAccountController extends HttpServlet {
 			throws ServletException, IOException {
 		log.debug("serving post request");
 		User user = (User) req.getSession().getAttribute("user");
-		String oldPassword = (String) req.getParameter(Password_Parameter);
-		String newPassword = (String) req.getParameter(New_Password_Parameter);
+		String oldPassword = (String) req.getParameter(PASSWORD_PARAMETER);
+		String newPassword = (String) req.getParameter(NEW_PASSWORD_PARAMETER);
 		String confirmPassword = (String) req
-				.getParameter(Confirmed_Password_Parameter);
+				.getParameter(CONFIRMED_PASSWORD_PARAMETER);
 		if (newPassword.trim().length() < 6 || confirmPassword.length() < 6) {
 			req.setAttribute("errorMessage",
 					"Password must be at least 6 characters long");
