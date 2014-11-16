@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.iitjx.pdfbookstore.domain.*;
 import com.iitjx.pdfbookstore.service.*;
 
@@ -26,14 +29,19 @@ public class AddBookController extends HttpServlet {
 	private final String ISBN_PARAMETER = "ISBN";
 	private final String DESCRIPTION_PARAMETER = "description";
 
+	private static Logger log = LoggerFactory
+			.getLogger(AddBookController.class);
+
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		log.debug("serving get request");
 		getServletContext().getRequestDispatcher("/WEB-INF/views/add-book.jsp")
 				.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		log.debug("serving post request");
 		Book book = new Book();
 		AddBookService bookController = new AddBookService();
 		book.setBookName(request.getParameter(BOOK_NAME_PARAMETER));
@@ -50,7 +58,7 @@ public class AddBookController extends HttpServlet {
 		parts.add(request.getPart("book-image"));
 		parts.add(request.getPart("pdf-file"));
 
-		FileUploadService fus = new FileUploadService();
+		FileService fus = new FileService();
 		List<String> fileNames = fus.uploadFile(getServletContext()
 				.getRealPath(""), parts, user.getUserName());
 		book.setCover(fileNames.get(0));

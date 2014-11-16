@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.servlet.http.Part;
 
-public class FileUploadService {
+public class FileService {
 	private final String SAVE_DIR = "uploadFiles";
 
 	public List<String> uploadFile(String appPath, List<Part> parts,
@@ -16,8 +16,7 @@ public class FileUploadService {
 		File rootDir = new File(rootPath);
 		if (!rootDir.exists())
 			rootDir.mkdir();
-		String savePath = appPath + File.separator + SAVE_DIR + File.separator
-				+ userName;
+		String savePath = rootPath + File.separator + userName;
 		List<String> fileNames = new ArrayList<String>();
 		File fileSaveDir = new File(savePath);
 		if (!fileSaveDir.exists()) {
@@ -45,5 +44,15 @@ public class FileUploadService {
 			}
 		}
 		return "";
+	}
+
+	public boolean deleteFile(String fileName, String appPath) {
+		String rootPath = appPath + File.separator + SAVE_DIR;
+		File file = new File(rootPath + File.separator + fileName);
+		if(file.exists())
+		{
+			return file.delete();
+		}
+		return false;
 	}
 }

@@ -121,7 +121,7 @@ body {
 						<li><a href="add-book">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-plus-square"></i> Add New Book
 						</a></li>
-						<li><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i>
+						<li><a href="added-books">&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i>
 								My Added Books
 						</a></li>
 						<li><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i>
