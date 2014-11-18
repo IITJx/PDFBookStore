@@ -5,7 +5,7 @@ import com.iitjx.pdfbookstore.domain.*;
 
 public class RegistrationService {
 	public boolean validateRegistration(User user) {
-		UserDAO userDAO = new UserDAO();
+		UserDao userDAO = new UserDao();
 		if (userDAO.getUserByUserName(user.getUserName()) == null) {
 			return true;
 		} else {
@@ -14,7 +14,7 @@ public class RegistrationService {
 	}
 
 	public boolean saveRegisteredUser(User user) {
-		UserDAO userDAO = new UserDAO();
+		UserDao userDAO = new UserDao();
 		return userDAO.insertUser(user);
 	}
 }

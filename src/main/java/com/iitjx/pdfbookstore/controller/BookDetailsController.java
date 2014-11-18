@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.iitjx.pdfbookstore.dao.BookAccessDAO;
-import com.iitjx.pdfbookstore.dao.BookDAO;
+import com.iitjx.pdfbookstore.dao.BookAccessDao;
+import com.iitjx.pdfbookstore.dao.BookDao;
 import com.iitjx.pdfbookstore.domain.Book;
 import com.iitjx.pdfbookstore.domain.BookAccess;
 import com.iitjx.pdfbookstore.domain.User;
@@ -34,7 +34,7 @@ public class BookDetailsController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		log.debug("serving post request");
-		BookDAO bookDAO = new BookDAO();
+		BookDao bookDAO = new BookDao();
 		String reqId = req.getParameter("id");
 		if (reqId != null) {
 			int id = Integer.parseInt(reqId);
@@ -45,7 +45,7 @@ public class BookDetailsController extends HttpServlet {
 				BookAccess bookAccess = new BookAccess();
 				bookAccess.setAccessTime((new Date()).toString());
 				bookAccess.setBookId(book.getBookId());
-				BookAccessDAO bookAccessDAO = new BookAccessDAO();
+				BookAccessDao bookAccessDAO = new BookAccessDao();
 				bookAccessDAO.insertBookAccess(bookAccess);
 			} else {
 				User user = (User) req.getSession().getAttribute("user");
@@ -53,7 +53,7 @@ public class BookDetailsController extends HttpServlet {
 					BookAccess bookAccess = new BookAccess();
 					bookAccess.setAccessTime((new Date()).toString());
 					bookAccess.setBookId(book.getBookId());
-					BookAccessDAO bookAccessDAO = new BookAccessDAO();
+					BookAccessDao bookAccessDAO = new BookAccessDao();
 					bookAccessDAO.insertBookAccess(bookAccess);
 				}
 			}

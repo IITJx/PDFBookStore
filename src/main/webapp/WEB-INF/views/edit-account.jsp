@@ -7,11 +7,6 @@
 <title>PDFBookStore | Edit Account</title>
 </head>
 <body>
-	<c:if test="${session==null }">
-		<%
-			response.sendRedirect("home");
-		%>
-	</c:if>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">

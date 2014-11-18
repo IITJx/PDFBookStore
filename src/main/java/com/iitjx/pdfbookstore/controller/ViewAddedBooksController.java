@@ -26,7 +26,7 @@ public class ViewAddedBooksController extends HttpServlet {
 			throws ServletException, IOException {
 		log.debug("serving get request");
 		User user = (User) req.getSession().getAttribute("user");
-		BookDAO bookDAO = new BookDAO();
+		BookDao bookDAO = new BookDao();
 		List<Book> books = bookDAO.getBookBy("uploader", user.getUserName());
 		req.setAttribute("books", books);
 		getServletContext().getRequestDispatcher(

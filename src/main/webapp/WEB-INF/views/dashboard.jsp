@@ -7,11 +7,6 @@
 <title>PDFStore | User Login</title>
 </head>
 <body>
-	<c:if test="${session==null || user.getType()!='Publisher'}">
-		<%
-			response.sendRedirect("home");
-		%>
-	</c:if>
 	<div class="container">
 		<div class="row"></div>
 	</div>

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.iitjx.pdfbookstore.dao.BookDAO;
+import com.iitjx.pdfbookstore.dao.BookDao;
 import com.iitjx.pdfbookstore.domain.Book;
 import com.iitjx.pdfbookstore.domain.User;
 import com.iitjx.pdfbookstore.service.FileService;
@@ -37,7 +37,7 @@ public class DeleteBookController extends HttpServlet {
 		String bookId = req.getParameter("bookId");
 		if (bookId != null) {
 			int id = Integer.parseInt(bookId);
-			BookDAO bookDAO = new BookDAO();
+			BookDao bookDAO = new BookDao();
 			Book book = bookDAO.getBookById(id);
 			User user = (User) req.getSession().getAttribute("user");
 			String pdf = user.getUserName() + File.separator

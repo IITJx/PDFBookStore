@@ -47,7 +47,7 @@ public class EditAccountController extends HttpServlet {
 			req.setAttribute("errorMessage",
 					"New Password and Confirm Password do not match");
 		} else {
-			UserDAO userDAO = new UserDAO();
+			UserDao userDAO = new UserDao();
 			EncryptionService encryptionService = new EncryptionService();
 			if (encryptionService.encryptPassword(oldPassword).equals(
 					user.getPassword())) {

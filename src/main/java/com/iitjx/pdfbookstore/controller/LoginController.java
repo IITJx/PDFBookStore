@@ -45,7 +45,7 @@ public class LoginController extends HttpServlet {
 					.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(
 							request, response);
 		} else {
-			UserDAO userDAO = new UserDAO();
+			UserDao userDAO = new UserDao();
 			User user = userDAO.getUserByUserName(request
 					.getParameter(USER_NAME_PARAMETER));
 			HttpSession session = request.getSession();

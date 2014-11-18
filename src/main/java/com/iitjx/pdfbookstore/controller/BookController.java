@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.iitjx.pdfbookstore.dao.BookDAO;
+import com.iitjx.pdfbookstore.dao.BookDao;
 import com.iitjx.pdfbookstore.domain.Book;
 
 @WebServlet("/books")
@@ -18,7 +18,7 @@ public class BookController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		BookDAO bookDAO = new BookDAO();
+		BookDao bookDAO = new BookDao();
 		int total = bookDAO.getTotalBooks();
 		int max = 6;
 		int totalPages = (int) Math.ceil((double) total / max);

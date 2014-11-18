@@ -6,7 +6,7 @@ import com.iitjx.pdfbookstore.dao.*;
 public class LoginService {
 
 	public boolean validateLogin(String userName, String password) {
-		UserDAO userDAO = new UserDAO();
+		UserDao userDAO = new UserDao();
 		User user = userDAO.getUserByUserName(userName);
 		if (user == null)
 			return false;

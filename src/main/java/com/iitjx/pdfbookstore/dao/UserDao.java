@@ -9,11 +9,11 @@ import org.hibernate.criterion.Restrictions;
 
 import com.iitjx.pdfbookstore.domain.*;
 
-public class UserDAO {
+public class UserDao {
 	private static SessionFactory factory;
 	private Session session;
 
-	public UserDAO() {
+	public UserDao() {
 		factory = new Configuration().configure().buildSessionFactory();
 	}
 

@@ -15,37 +15,44 @@
 	<br>
 	<div class="row">
 		<div class="container">
-		<c:if test="${book!=null }">
-			<div class="col-md-5 col-md-offset-3">
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<h1>${book.getBookName()}</h1>
-					</div>
-					<div class="panel-body">
-						<table class="table table-striped">
-							<tr>
-								<td>Author :</td>
-								<td>${book.getAuthorName() }</td>
-							</tr>
-							<tr>
-								<td>Category :</td>
-								<td>${book.getCategory() }</td>
-							</tr>
-							<tr>
-								<td>Description :</td>
-								<td>${book.getDescription() }</td>
-							</tr>
-						</table>
-						<div class="pull-right">
-							<form method="post" action="delete-book">
-								<input type="hidden" name="bookId" value="${book.getBookId() }"/>
-								 <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete book ${book.getBookName()}?')"><i class="fa fa-trash"></i> Delete</button>
-							</form>
+			<c:if test="${book!=null }">
+				<div class="col-md-5 col-md-offset-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<h1>${book.getBookName()}</h1>
+						</div>
+						<div class="panel-body">
+							<table class="table table-striped">
+								<tr>
+									<td>Author :</td>
+									<td>${book.getAuthorName() }</td>
+								</tr>
+								<tr>
+									<td>Category :</td>
+									<td>${book.getCategory() }</td>
+								</tr>
+								<tr>
+									<td>Description :</td>
+									<td>${book.getDescription() }</td>
+								</tr>
+								<tr>
+									<td>Access Count</td>
+									<td>${accessCount }</td>
+								</tr>
+							</table>
+							<div class="pull-right">
+								<form method="post" action="delete-book">
+									<input type="hidden" name="bookId" value="${book.getBookId() }" />
+									<button type="submit" class="btn btn-danger"
+										onclick="return confirm('Are you sure to delete book ${book.getBookName()}?')">
+										<i class="fa fa-trash"></i> Delete
+									</button>
+								</form>
+							</div>
 						</div>
 					</div>
-				</div>
 
-			</div>
+				</div>
 			</c:if>
 		</div>
 	</div>

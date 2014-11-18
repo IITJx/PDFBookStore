@@ -1,16 +1,18 @@
 package com.iitjx.pdfbookstore.dao;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 import com.iitjx.pdfbookstore.domain.BookAccess;
 
-public class BookAccessDAO {
+public class BookAccessDao {
 	private static SessionFactory factory;
 	private Session session;
 
-	public BookAccessDAO() {
+	public BookAccessDao() {
 		factory = new Configuration().configure().buildSessionFactory();
 	}
 
@@ -23,9 +25,19 @@ public class BookAccessDAO {
 		session.getTransaction().commit();
 		session.close();
 	}
-	public void insertBookAccess(BookAccess bookAccess){
+
+	public void insertBookAccess(BookAccess bookAccess) {
 		openNewSession();
 		session.save(bookAccess);
 		closeCurrentSession();
+	}
+
+	public int getAccessCount(int bookId) {
+		openNewSession();
+		Criteria criteria = session.createCriteria(BookAccess.class);
+		criteria.add(Restrictions.eq("bookId", bookId));
+		int accessCount = criteria.list().size();
+		closeCurrentSession();
+		return accessCount;
 	}
 }
