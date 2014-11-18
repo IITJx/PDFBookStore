@@ -3,3 +3,6 @@ build/*
 *.classpath
 *.project
 .settings/*
+.gradle/*
+bin/*
+src/main/webapp/lib/*
