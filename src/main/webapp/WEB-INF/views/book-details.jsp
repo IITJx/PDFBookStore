@@ -13,16 +13,18 @@ td {
 </style>
 </head>
 <body>
-	<br/>
-	<br/>
+	<br />
+	<br />
 	<div class="row">
 		<div class="col-md-offset-2 col-md-7">
 			<div class="panel panel-info">
-				<div class="panel-heading"><h3>${book.getBookName()}</h3></div>
+				<div class="panel-heading">
+					<h3>${book.getBookName()}</h3>
+				</div>
 				<div class="panel-body">
 					<div style="text-align: center;">
-						<img src="<c:url value="${book.getCover() }"/>" height="240"
-							width="280" />
+						<img src="image?id=<c:url value="${book.getImageId()}"/>"
+							height="240" width="280" />
 					</div>
 					<br />
 					<table class="table table-striped">
@@ -39,8 +41,10 @@ td {
 							<td>: ${book.getDescription()}</td>
 						</tr>
 						<tr>
-							<td colspan="2"><a href="#" class="btn btn-primary"><span
-									class="glyphicon glyphicon-download-alt"></span> Download</a> <a href="#" class="btn btn-warning"><i class="fa fa-share"></i> Share</a></td>
+							<td colspan="2"><a href="download?id=<c:url value="${book.getPdfId()}"/>" class="btn btn-primary"><span
+									class="glyphicon glyphicon-download-alt"></span> Download</a> <a
+								href="#" class="btn btn-warning"><i class="fa fa-share"></i>
+									Share</a></td>
 						</tr>
 					</table>
 				</div>

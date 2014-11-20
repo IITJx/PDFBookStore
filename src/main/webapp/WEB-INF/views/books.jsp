@@ -7,6 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>PDFBookStore | Books</title>
 <style type="text/css">
+img {
+	height: 300px;
+	width: 300px;
+}
 </style>
 </head>
 
@@ -22,7 +26,8 @@
 			<c:forEach var="book" items="${requestScope.books }">
 				<div class="col-md-4">
 					<div class="thumbnail">
-						<img src="<c:url value="${book.getCover() }"/>" alt="Book Cover" />
+						<img src="image?id=<c:url value="${book.getImageId()}"/>"
+							alt="Book Cover" />
 						<div class="caption">
 							<h3 class="img-heading">${book.getBookName()}</h3>
 							<p>

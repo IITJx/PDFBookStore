@@ -43,15 +43,15 @@ public class BookDetailsController extends HttpServlet {
 			log.debug("retrieved book: {}", book.getBookName());
 			if (req.getSession().getAttribute("user") == null) {
 				BookAccess bookAccess = new BookAccess();
-				bookAccess.setAccessTime((new Date()).toString());
+				bookAccess.setAccessTime(new Date());
 				bookAccess.setBookId(book.getBookId());
 				BookAccessDao bookAccessDAO = new BookAccessDao();
 				bookAccessDAO.insertBookAccess(bookAccess);
 			} else {
 				User user = (User) req.getSession().getAttribute("user");
-				if (user.getUserName() != book.getUploader()) {
+				if (user.getUserId() != (book.getUploader())) {
 					BookAccess bookAccess = new BookAccess();
-					bookAccess.setAccessTime((new Date()).toString());
+					bookAccess.setAccessTime(new Date());
 					bookAccess.setBookId(book.getBookId());
 					BookAccessDao bookAccessDAO = new BookAccessDao();
 					bookAccessDAO.insertBookAccess(bookAccess);

@@ -9,15 +9,15 @@ public class Book {
 	@Id
 	@GeneratedValue
 	private int bookId;
-	private String uploader;
+	private int uploaderId;
 	private String bookName;
 	private String authorName;
 	private String ISBN;
 	private String category;
 	private String description;
 	private String insertionDate;
-	private String cover;
-	private String pdfFile;
+	private int imageId;
+	private int pdfId;
 
 	public String getBookName() {
 		return bookName;
@@ -27,12 +27,12 @@ public class Book {
 		this.bookName = bookName;
 	}
 
-	public String getUploader() {
-		return uploader;
+	public int getUploader() {
+		return uploaderId;
 	}
 
-	public void setUploader(String uploader) {
-		this.uploader = uploader;
+	public void setUploader(int uploader) {
+		this.uploaderId = uploader;
 	}
 
 	public String getAuthorName() {
@@ -75,20 +75,20 @@ public class Book {
 		this.insertionDate = insertionDate;
 	}
 
-	public String getCover() {
-		return cover;
+	public int getImageId() {
+		return imageId;
 	}
 
-	public void setCover(String cover) {
-		this.cover = cover;
+	public void setImageId(int imageId) {
+		this.imageId = imageId;
 	}
 
-	public String getPdfFile() {
-		return pdfFile;
+	public int getPdfId() {
+		return pdfId;
 	}
 
-	public void setPdfFile(String pdfFile) {
-		this.pdfFile = pdfFile;
+	public void setPdfId(int pdfId) {
+		this.pdfId = pdfId;
 	}
 
 	public int getBookId() {

@@ -1,58 +1,28 @@
 package com.iitjx.pdfbookstore.service;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.*;
+
+import com.iitjx.pdfbookstore.dao.FileDao;
+import com.iitjx.pdfbookstore.domain.File;
+
 public class FileService {
-	private final String SAVE_DIR = "uploadFiles";
-
-	public List<String> uploadFile(String appPath, List<Part> parts,
-			String userName) {
-		String rootPath = appPath + File.separator + SAVE_DIR;
-		File rootDir = new File(rootPath);
-		if (!rootDir.exists())
-			rootDir.mkdir();
-		String savePath = rootPath + File.separator + userName;
-		List<String> fileNames = new ArrayList<String>();
-		File fileSaveDir = new File(savePath);
-		if (!fileSaveDir.exists()) {
-			fileSaveDir.mkdir();
-		}
-
-		for (Part part : parts) {
-			String fileName = extractFileName(part);
-			fileNames.add(fileName);
-			try {
-				part.write(savePath + File.separator + fileName);
+	public int uploadFile(Part part) {
+		File file = new File();
+		file.setContentType(part.getContentType());
+		file.setName(part.getName());
+		file.setTimestamp(new Date());
+		try {
+			file.setData(IOUtils.toByteArray(part.getInputStream()));
+			FileDao fileDao = new FileDao();
+			return fileDao.saveFile(file);
 			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
+			return -1;
 		}
-		return fileNames;
-	}
-
-	private String extractFileName(Part part) {
-		String contentDisp = part.getHeader("content-disposition");
-		String[] items = contentDisp.split(";");
-		for (String s : items) {
-			if (s.trim().startsWith("filename")) {
-				return s.substring(s.indexOf("=") + 2, s.length() - 1);
-			}
-		}
-		return "";
-	}
-
-	public boolean deleteFile(String fileName, String appPath) {
-		String rootPath = appPath + File.separator + SAVE_DIR;
-		File file = new File(rootPath + File.separator + fileName);
-		if(file.exists())
-		{
-			return file.delete();
-		}
-		return false;
 	}
 }

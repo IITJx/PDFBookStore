@@ -60,6 +60,11 @@ body {
 	width: 200px;
 	background-color: #EFEFEF;
 }
+
+.error {
+	color:red;
+	display: block;
+}
 </style>
 </head>
 <body>
@@ -107,6 +112,12 @@ body {
 			</div>
 		</div>
 	</div>
+	<c:if test="${ session==null}">
+	<br/><br/><br/>
+	</c:if>
+	<c:if test="${ session==true && user.getType()=='User'}">
+	<br/><br/><br/>
+	</c:if>
 	<!-- Side bar left
 	 =====================================================-->
 
@@ -121,8 +132,8 @@ body {
 						<li><a href="add-book">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-plus-square"></i> Add New Book
 						</a></li>
-						<li><a href="added-books">&nbsp;&nbsp;&nbsp;<i class="fa fa-list"></i>
-								My Added Books
+						<li><a href="added-books">&nbsp;&nbsp;&nbsp;<i
+								class="fa fa-list"></i> My Added Books
 						</a></li>
 						<li><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i>
 								Book Summary
@@ -146,12 +157,12 @@ body {
 				<li><a href="#">Export</a></li>
 			</ul>
 		</div>
-	</c:if>
-	<script type="text/javascript">
+		<script type="text/javascript">
 		$(document).ready(function() {
 			$("#sideBar").hide();
 		});
 	</script>
+	</c:if>
 	<!-- Sidebar ends here -->
 	<decorator:body />
 

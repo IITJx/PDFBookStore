@@ -19,9 +19,10 @@ import org.slf4j.LoggerFactory;
 
 import com.iitjx.pdfbookstore.domain.*;
 import com.iitjx.pdfbookstore.service.*;
+import com.iitjx.pdfbookstore.util.ContentType;
 
 @WebServlet("/add-book")
-@MultipartConfig
+@MultipartConfig(maxFileSize=31457280)
 public class AddBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final String BOOK_NAME_PARAMETER = "bookName";
@@ -32,6 +33,7 @@ public class AddBookController extends HttpServlet {
 	private final String PDF_FILE_PARAMETER = "pdf-file";
 	private final String BOOK_IMAGE_PARAMETER = "book-image";
 
+	private String[] supportedImages = { ".png", ".jpg", ".jpeg", ".bmp" };
 	private static Logger log = LoggerFactory
 			.getLogger(AddBookController.class);
 
@@ -46,7 +48,8 @@ public class AddBookController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		log.debug("serving post request");
 		Book book = new Book();
-		AddBookService bookController = new AddBookService();
+		User user = (User) request.getSession().getAttribute("user");
+		book.setUploader(user.getUserId());
 		book.setBookName(request.getParameter(BOOK_NAME_PARAMETER));
 		book.setAuthorName(request.getParameter(AUTHOR_NAME_PARAMETER));
 		book.setCategory(request.getParameter(CATEGORY_NAME_PARAMETER));
@@ -54,25 +57,36 @@ public class AddBookController extends HttpServlet {
 		book.setISBN(request.getParameter(ISBN_PARAMETER));
 		book.setInsertionDate(new Date().toString());
 
-		User user = (User) request.getSession().getAttribute("user");
-		book.setUploader(user.getUserName());
+		Part pdfPart = request.getPart(PDF_FILE_PARAMETER);
+		Part imagePart = request.getPart(BOOK_IMAGE_PARAMETER);
 
-		List<Part> parts = new ArrayList<>();
-		parts.add(request.getPart(BOOK_IMAGE_PARAMETER));
-		parts.add(request.getPart(PDF_FILE_PARAMETER));
-
-		FileService fus = new FileService();
-		List<String> fileNames = fus.uploadFile(getServletContext()
-				.getRealPath(""), parts, user.getUserName());
-		book.setCover("/uploadFiles" + File.separator + user.getUserName()
-				+ File.separator + fileNames.get(0));
-		book.setPdfFile("/uploadFiles" + File.separator + user.getUserName()
-				+ File.separator + fileNames.get(1));
-
-		if (bookController.addBook(book)) {
-			request.setAttribute("message", "Book successfully added");
-		} else {
+		boolean isSupported = false;
+		ContentType contentType = ContentType.getInstance();
+		for (String string : supportedImages) {
+			if (imagePart.getContentType().matches(
+					contentType.getContentType(string))) {
+				isSupported = true;
+			}
+		}
+		boolean hasError = false;
+		if (!isSupported) {
+			request.setAttribute("imageError", "Image type not supported");
+			hasError = true;
+		}
+		if (!pdfPart.getContentType().matches(
+				contentType.getContentType(".pdf"))) {
+			request.setAttribute("pdfError", "You must upload a PDF file");
+			hasError = true;
+		}
+		if (hasError) {
 			request.setAttribute("errorMessage", "Book can't be added");
+		} else {
+			FileService fileService = new FileService();
+			book.setImageId(fileService.uploadFile(imagePart));
+			book.setPdfId(fileService.uploadFile(pdfPart));
+			AddBookService addBookService = new AddBookService();
+			request.setAttribute("message", "Book has been added successfully");
+			addBookService.addBook(book);
 		}
 		getServletContext().getRequestDispatcher("/WEB-INF/views/add-book.jsp")
 				.forward(request, response);

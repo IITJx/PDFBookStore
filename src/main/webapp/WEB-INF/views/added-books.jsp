@@ -15,6 +15,10 @@
 			<div class="col-md-9 col-md-offset-1">
 				<h1>My Added Books</h1>
 				<hr />
+				<c:if test="${message!=null}">
+					<div class="alert alert-success">
+						<a class="close" data-dismiss="alert">&times;</a>${message}</div>
+				</c:if>
 				<c:if test="${books.size()!=0 }">
 					<table class="table table-striped" border="1">
 						<thead>
@@ -30,9 +34,9 @@
 								<td>${book.getAuthorName()}</td>
 								<td>
 									<form method="post" action="view-book">
-									<input
-									type="hidden" name="bookId" value="${book.getBookId() }" >
-									<input type="submit" value="View" class="btn btn-default">
+										<input type="hidden" name="bookId"
+											value="${book.getBookId() }"> <input type="submit"
+											value="View" class="btn btn-default">
 									</form>
 								</td>
 							</tr>
@@ -47,7 +51,7 @@
 			$("#sideBar").show();
 			$(".active").removeClass();
 			$("#dashBooks").parent().addClass("active");
-			$("th,td").css("text-align","center");
+			$("th,td").css("text-align", "center");
 		});
 	</script>
 </body>

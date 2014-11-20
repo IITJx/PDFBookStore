@@ -10,14 +10,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
-				<c:if test="${registrationSuccess!=null}">
-					<h1></h1>
-					<div class="alert alert-success message">
-						<a class="close" data-dismiss="alert">&times;</a>${registrationSuccess }
-					</div>
-				</c:if>
 				<h1>User Login</h1>
 				<hr />
+				<c:if test="${errorMessage!=null}">
+					<div class="alert alert-info">
+						<a class="close" data-dismiss="alert">&times;</a>${errorMessage }
+					</div>
+				</c:if>
 				<form action="" method="post" class="form-horizontal well">
 					<div class="form-group">
 						<label for="username" class="control-label col-md-2">User
@@ -42,6 +41,7 @@
 					</div>
 					<div class="col-md-offset-2">Don't have an account? <a href="register">Register Here!</a></div>
 					<c:if test="${message!=null}">
+						<br/>
 						<div class="alert alert-warning">
 							<a href="#" class="close" data-dismiss="alert">&times;</a>
 							<p class="error" style="color: RED">${message}</p>

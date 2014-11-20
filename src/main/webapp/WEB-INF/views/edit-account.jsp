@@ -10,7 +10,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
-				<h1>User Login</h1>
+				<h1>Edit Account</h1>
 				<hr />
 				<form action="" method="post" class="form-horizontal well">
 					<c:if test="${message!=null}">

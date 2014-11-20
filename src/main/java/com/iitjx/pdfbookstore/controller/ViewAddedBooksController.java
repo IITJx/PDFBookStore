@@ -27,7 +27,7 @@ public class ViewAddedBooksController extends HttpServlet {
 		log.debug("serving get request");
 		User user = (User) req.getSession().getAttribute("user");
 		BookDao bookDAO = new BookDao();
-		List<Book> books = bookDAO.getBookBy("uploader", user.getUserName());
+		List<Book> books = bookDAO.getBookByUploaderId(user.getUserId());
 		req.setAttribute("books", books);
 		getServletContext().getRequestDispatcher(
 				"/WEB-INF/views/added-books.jsp").forward(req, resp);

@@ -1,6 +1,5 @@
 package com.iitjx.pdfbookstore.controller;
 
-import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -13,9 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.iitjx.pdfbookstore.dao.BookDao;
+import com.iitjx.pdfbookstore.dao.FileDao;
 import com.iitjx.pdfbookstore.domain.Book;
 import com.iitjx.pdfbookstore.domain.User;
-import com.iitjx.pdfbookstore.service.FileService;
 
 @WebServlet("/delete-book")
 public class DeleteBookController extends HttpServlet {
@@ -38,25 +37,20 @@ public class DeleteBookController extends HttpServlet {
 		if (bookId != null) {
 			int id = Integer.parseInt(bookId);
 			BookDao bookDAO = new BookDao();
+			FileDao fileDao = new FileDao();
 			Book book = bookDAO.getBookById(id);
 			User user = (User) req.getSession().getAttribute("user");
-			String pdf = user.getUserName() + File.separator
-					+ book.getPdfFile();
-			String cover = user.getUserName() + File.separator
-					+ book.getCover();
-
-			FileService fileService = new FileService();
-			fileService.deleteFile(pdf, getServletContext().getRealPath(""));
-			fileService.deleteFile(cover, getServletContext().getRealPath(""));
 			log.debug("{} is going to be deleted", book.getBookName());
+			fileDao.deleteFileById(book.getImageId());
+			fileDao.deleteFileById(book.getPdfId());
 			bookDAO.deleteBook(book);
 			req.setAttribute("message", "Book has been deleted successfully");
 			getServletContext().getRequestDispatcher(
-					"/WEB-INF/views/view-book.jsp").forward(req, resp);
+					"/WEB-INF/views/added-books.jsp").forward(req, resp);
 		} else {
 			req.setAttribute("errorMessage", "Book can't be deleted");
 			getServletContext().getRequestDispatcher(
-					"/WEB-INF/views/view-book.jsp").forward(req, resp);
+					"/WEB-INF/views/added-books.jsp").forward(req, resp);
 		}
 	}
 }

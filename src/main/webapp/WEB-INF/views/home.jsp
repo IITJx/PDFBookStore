@@ -9,11 +9,11 @@
 <title>PDFBookStore | Home</title>
 </head>
 <body>
-	<br>
-	<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
+			<br>
+			<br>
 				<c:if test="${loggedUser!=null}">
 					<div class="alert alert-success message">
 						<a class="close" data-dismiss="alert">&times;</a>Welcome, <b>${loggedUser}</b>

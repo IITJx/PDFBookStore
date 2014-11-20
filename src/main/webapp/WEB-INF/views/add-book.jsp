@@ -17,6 +17,10 @@
 					<div class="alert alert-success">
 						<a class="close" data-dismiss="alert">&times;</a>${message}</div>
 				</c:if>
+				<c:if test="${errorMessage!=null}">
+					<div class="alert alert-danger">
+						<a class="close" data-dismiss="alert">&times;</a>${errorMessage}</div>
+				</c:if>
 				<form method="post" class="form-horizontal well"
 					enctype="multipart/form-data">
 					<div class="form-group">
@@ -32,7 +36,7 @@
 						<div class="col-md-3">
 							<input type="text" name="author" class="form-control"
 								placeholder="Enter Author Name..." required="true" />
-							</td>
+
 						</div>
 					</div>
 					<div class="form-group">
@@ -66,15 +70,24 @@
 						<label for="book-image" class="control-label col-md-2">Book
 							Cover</label>
 						<div class="col-md-4">
-							<input type="file" class="form-control" name="book-image" required/>
+							<input type="file" class="form-control" name="book-image"
+								required /> <i>.png, .jpg, .jpeg,
+								.bmp</i> are supported
 						</div>
+						<c:if test="${imageError!=null}">
+							<div class="error">${imageError}</div>
+							</c:if>
 					</div>
 					<div class="form-group">
 						<label for="pdf-file" class="control-label col-md-2">PDF
 							File</label>
 						<div class="col-md-4">
-							<input type="file" class="form-control" name="pdf-file" required/>
+							<input type="file" class="form-control" name="pdf-file" required />
+
 						</div>
+						<c:if test="${pdfError!=null}">
+							<div class="error">${pdfError}</div>
+							</c:if>
 					</div>
 
 					<div class="form-group">

@@ -126,4 +126,14 @@ public class BookDao {
 		Criteria criteria = session.createCriteria(Book.class);
 		return criteria.list().size();
 	}
+
+	public List<Book> getBookByUploaderId(int userId) {
+		openNewSession();
+		Criteria criteria = session.createCriteria(Book.class);
+		criteria.add(Restrictions.eq("uploaderId", userId));
+		List<Book> books = criteria.list();
+		closeCurrentSession();
+		
+		return books;
+	}
 }

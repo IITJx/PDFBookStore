@@ -1,5 +1,7 @@
 package com.iitjx.pdfbookstore.domain;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +10,9 @@ public class BookAccess {
 	@GeneratedValue
 	private int accessId;
 	private int bookId;
-	private String accessTime;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date accessTime;
 
 	public int getAccessId() {
 		return accessId;
@@ -26,11 +30,11 @@ public class BookAccess {
 		this.bookId = bookId;
 	}
 
-	public String getAccessTime() {
+	public Date getAccessTime() {
 		return accessTime;
 	}
 
-	public void setAccessTime(String accessTime) {
+	public void setAccessTime(Date accessTime) {
 		this.accessTime = accessTime;
 	}
 
