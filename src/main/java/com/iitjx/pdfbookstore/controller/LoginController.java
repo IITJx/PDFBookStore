@@ -19,11 +19,11 @@ import com.iitjx.pdfbookstore.dao.*;
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
-	
+	private static final Logger log = LoggerFactory
+			.getLogger(LoginController.class);
+
 	private final String USER_NAME_PARAMETER = "username";
 	private final String PASSWORD_PARAMETER = "password";
-	
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {

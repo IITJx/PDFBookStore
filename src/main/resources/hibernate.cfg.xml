@@ -35,6 +35,7 @@
 		<mapping class="com.iitjx.pdfbookstore.domain.Book" />
 		<mapping class="com.iitjx.pdfbookstore.domain.BookAccess" />
 		<mapping class="com.iitjx.pdfbookstore.domain.File" />
+		<mapping class="com.iitjx.pdfbookstore.domain.DownloadInfo" />
 
 	</session-factory>
 </hibernate-configuration>

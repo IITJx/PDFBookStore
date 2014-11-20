@@ -36,7 +36,7 @@
 					<h1>PDF Book Store</h1>
 					<p>Habit of reading is a great asset...</p>
 					<p>
-						<a class="btn btn-success btn-lg" href="#">Go to Books <i
+						<a class="btn btn-success btn-lg" href="books">Go to Books <i
 							class="fa fa-angle-double-right"></i></a>
 					</p>
 					<br /> <br /> <br />

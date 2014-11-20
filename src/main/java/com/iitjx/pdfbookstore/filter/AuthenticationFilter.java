@@ -31,8 +31,7 @@ public class AuthenticationFilter implements Filter {
 					|| requestedURI.contains("edit")
 					|| requestedURI.contains("delete")
 					|| requestedURI.contains("view")
-					|| requestedURI.contains("added")
-					||requestedURI.contains("add"))
+					|| requestedURI.contains("add"))
 				((HttpServletResponse) response).sendRedirect("login");
 			else
 				filterChain.doFilter(request, response);
@@ -40,7 +39,7 @@ public class AuthenticationFilter implements Filter {
 			User user = (User) session.getAttribute("user");
 			if (user.getType().matches("User")
 					&& (requestedURI.contains("dashboard")
-							|| requestedURI.contains("view")
+							|| requestedURI.contains("view-book")
 							|| requestedURI.contains("delete") || requestedURI
 								.contains("add"))) {
 				((HttpServletResponse) response).sendRedirect("home");

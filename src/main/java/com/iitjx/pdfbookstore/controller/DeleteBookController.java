@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.iitjx.pdfbookstore.dao.BookAccessDao;
 import com.iitjx.pdfbookstore.dao.BookDao;
 import com.iitjx.pdfbookstore.dao.FileDao;
 import com.iitjx.pdfbookstore.domain.Book;
@@ -43,6 +44,8 @@ public class DeleteBookController extends HttpServlet {
 			log.debug("{} is going to be deleted", book.getBookName());
 			fileDao.deleteFileById(book.getImageId());
 			fileDao.deleteFileById(book.getPdfId());
+			BookAccessDao bookAccessDao = new BookAccessDao();
+			bookAccessDao.deleteBookAccess(book.getBookId());
 			bookDAO.deleteBook(book);
 			req.setAttribute("message", "Book has been deleted successfully");
 			getServletContext().getRequestDispatcher(

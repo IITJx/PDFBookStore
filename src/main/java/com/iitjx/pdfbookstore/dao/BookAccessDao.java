@@ -1,6 +1,7 @@
 package com.iitjx.pdfbookstore.dao;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -39,5 +40,14 @@ public class BookAccessDao {
 		int accessCount = criteria.list().size();
 		closeCurrentSession();
 		return accessCount;
+	}
+
+	public void deleteBookAccess(int bookId) {
+		openNewSession();
+		Query query = session
+				.createSQLQuery("delete from BookAccess where bookId = :id");
+		query.setString("id", bookId + "");
+		query.executeUpdate();
+		closeCurrentSession();
 	}
 }

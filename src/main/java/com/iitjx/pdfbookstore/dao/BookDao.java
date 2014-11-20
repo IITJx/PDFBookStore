@@ -10,7 +10,9 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import com.iitjx.pdfbookstore.domain.Book;;
+import com.iitjx.pdfbookstore.domain.Book;
+
+;
 
 public class BookDao {
 	private static SessionFactory factory;
@@ -133,7 +135,17 @@ public class BookDao {
 		criteria.add(Restrictions.eq("uploaderId", userId));
 		List<Book> books = criteria.list();
 		closeCurrentSession();
-		
+
 		return books;
 	}
+
+	public int getBookId(int fileId) {
+		openNewSession();
+		Criteria criteria = session.createCriteria(Book.class);
+		criteria.add(Restrictions.eq("pdfId", fileId));
+		Book book = (Book) criteria.list().get(0);
+		closeCurrentSession();
+		return book.getBookId();
+	}
+
 }

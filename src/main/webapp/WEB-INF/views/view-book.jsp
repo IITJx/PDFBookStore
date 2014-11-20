@@ -42,6 +42,8 @@
 							</table>
 							<div class="pull-right">
 								<form method="post" action="delete-book">
+									<a class="btn btn-primary"
+									href="edit-book?id=${book.getBookId() }"><i class="fa fa-edit"></i> Edit</a>
 									<input type="hidden" name="bookId" value="${book.getBookId() }" />
 									<button type="submit" class="btn btn-danger"
 										onclick="return confirm('Are you sure to delete book ${book.getBookName()}?')">

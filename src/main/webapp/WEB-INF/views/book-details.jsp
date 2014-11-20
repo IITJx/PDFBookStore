@@ -41,10 +41,11 @@ td {
 							<td>: ${book.getDescription()}</td>
 						</tr>
 						<tr>
-							<td colspan="2"><a href="download?id=<c:url value="${book.getPdfId()}"/>" class="btn btn-primary"><span
-									class="glyphicon glyphicon-download-alt"></span> Download</a> <a
-								href="#" class="btn btn-warning"><i class="fa fa-share"></i>
-									Share</a></td>
+							<td colspan="2"><a
+								href="download?id=<c:url value="${book.getPdfId()}"/>"
+								class="btn btn-primary"><span
+									class="glyphicon glyphicon-download-alt"></span> Download</a> <a href="#" class="btn btn-warning"><i
+									class="fa fa-share"></i> Share</a></td>
 						</tr>
 					</table>
 				</div>

@@ -62,7 +62,7 @@ body {
 }
 
 .error {
-	color:red;
+	color: red;
 	display: block;
 }
 </style>
@@ -95,9 +95,9 @@ body {
 				</c:if>
 				<c:if test="${session!=null}">
 					<div class="navbar-form pull-right">
-						<a href="#" class="dropdown-toggle btn btn-primary"
-							data-toggle="dropdown"> ${user.getUserName()} <b
-							class="caret"></b>
+						<a href="#"
+							class="dropdown-toggle btn btn-primary" data-toggle="dropdown">
+							${user.getUserName()} <b class="caret"></b>
 						</a>
 
 						<ul class="dropdown-menu">
@@ -113,10 +113,14 @@ body {
 		</div>
 	</div>
 	<c:if test="${ session==null}">
-	<br/><br/><br/>
+		<br />
+		<br />
+		<br />
 	</c:if>
 	<c:if test="${ session==true && user.getType()=='User'}">
-	<br/><br/><br/>
+		<br />
+		<br />
+		<br />
 	</c:if>
 	<!-- Side bar left
 	 =====================================================-->
@@ -158,10 +162,10 @@ body {
 			</ul>
 		</div>
 		<script type="text/javascript">
-		$(document).ready(function() {
-			$("#sideBar").hide();
-		});
-	</script>
+			$(document).ready(function() {
+				$("#sideBar").hide();
+			});
+		</script>
 	</c:if>
 	<!-- Sidebar ends here -->
 	<decorator:body />
