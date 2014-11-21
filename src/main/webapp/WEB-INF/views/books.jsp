@@ -15,8 +15,6 @@ img {
 </head>
 
 <body>
-	<br>
-
 	<div class="container">
 		<div class="col-md-11">
 			<h1>Books</h1>

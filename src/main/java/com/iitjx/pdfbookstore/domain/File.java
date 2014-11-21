@@ -10,7 +10,7 @@ public class File {
 	@GeneratedValue
 	private int id;
 	@Lob
-	@Column(length = 20971520, nullable = false)
+	@Column(length = 26*1024*1024, nullable = false)
 	private byte[] data;
 	@Column(length = 64, nullable = false)
 	private String name;

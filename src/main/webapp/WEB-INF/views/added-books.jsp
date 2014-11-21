@@ -18,6 +18,9 @@
 				<c:if test="${message!=null}">
 					<div class="alert alert-success">
 						<a class="close" data-dismiss="alert">&times;</a>${message}</div>
+					<%
+						session.removeAttribute("message");
+					%>
 				</c:if>
 				<c:if test="${books.size()!=0 }">
 					<table class="table table-striped" border="1">

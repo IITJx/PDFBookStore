@@ -83,7 +83,7 @@
 							File</label>
 						<div class="col-md-4">
 							<input type="file" class="form-control" name="pdf-file" required />
-
+							<i>max size: 25 MB</i>
 						</div>
 						<c:if test="${pdfError!=null}">
 							<div class="error">${pdfError}</div>

@@ -47,9 +47,9 @@ public class DeleteBookController extends HttpServlet {
 			BookAccessDao bookAccessDao = new BookAccessDao();
 			bookAccessDao.deleteBookAccess(book.getBookId());
 			bookDAO.deleteBook(book);
-			req.setAttribute("message", "Book has been deleted successfully");
-			getServletContext().getRequestDispatcher(
-					"/WEB-INF/views/added-books.jsp").forward(req, resp);
+			req.getSession().setAttribute("message",
+					"Book has been deleted successfully");
+			resp.sendRedirect("added-books");
 		} else {
 			req.setAttribute("errorMessage", "Book can't be deleted");
 			getServletContext().getRequestDispatcher(

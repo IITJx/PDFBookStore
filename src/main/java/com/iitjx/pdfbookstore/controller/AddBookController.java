@@ -1,11 +1,7 @@
 package com.iitjx.pdfbookstore.controller;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +19,7 @@ import com.iitjx.pdfbookstore.service.*;
 import com.iitjx.pdfbookstore.util.ContentType;
 
 @WebServlet("/add-book")
-@MultipartConfig(maxFileSize=31457280)
+@MultipartConfig
 public class AddBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private final String BOOK_NAME_PARAMETER = "bookName";
@@ -77,6 +74,10 @@ public class AddBookController extends HttpServlet {
 				contentType.getContentType(".pdf"))) {
 			request.setAttribute("pdfError", "You must upload a PDF file");
 			hasError = true;
+		}
+		else if(IOUtils.toByteArray(pdfPart.getInputStream()).length>25*1024*1024){
+			hasError = true;
+			request.setAttribute("pdfError", "File size must be between 25 MB");
 		}
 		if (hasError) {
 			request.setAttribute("errorMessage", "Book can't be added");

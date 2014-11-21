@@ -6,13 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Error</title>
+<style type="text/css">
+	body{
+		margin-left: 10%;
+		margin-right: 10%;
+	}
+</style>
 </head>
 
 <body>
 	<br>
 	<br>
-	<div class="container">
-		<div class="col-md-10">
+	<h1>Error!!</h1>
+	<hr/>
+		<div>
 			<c:choose>
 				<c:when test="${statusCode == 404}">
 					<h2>Sorry, the page you requested was not found.</h2>
@@ -28,6 +35,5 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-	</div>
 </body>
 </html>

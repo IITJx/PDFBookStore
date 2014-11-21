@@ -24,33 +24,26 @@ public class DownloadController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		if (req.getSession().getAttribute("session") == null) {
-			req.setAttribute("errorMessage", "You need to login first");
-			getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(
-							req, resp);
-		} else {
-			int fileId = Integer.parseInt(req.getParameter("id"));
-			FileDao fileDao = new FileDao();
-			File file = fileDao.getFile(fileId);
+		int fileId = Integer.parseInt(req.getParameter("id"));
+		FileDao fileDao = new FileDao();
+		File file = fileDao.getFile(fileId);
 
-			DownloadInfo downloadInfo = new DownloadInfo();
-			User user = (User) req.getSession().getAttribute("user");
-			BookDao bookDao = new BookDao();
-			downloadInfo.setUserId(user.getUserId());
-			downloadInfo.setDownloadTime(new Date());
-			downloadInfo.setBookId(bookDao.getBookId(file.getId()));
-			
-			DownloadInfoDao downloadInfoDao = new DownloadInfoDao();
-			downloadInfoDao.insertDownloadInfo(downloadInfo);
-			
-			resp.setContentType(file.getContentType());
-			resp.setContentLength(file.getData().length);
-			String headerKey = "Content-Disposition";
-			String headerValue = String.format("attachment; filename=\"%s\"",
-					file.getName() + file.getId());
-			resp.setHeader(headerKey, headerValue);
-			resp.getOutputStream().write(file.getData());
-		}
+		DownloadInfo downloadInfo = new DownloadInfo();
+		User user = (User) req.getSession().getAttribute("user");
+		BookDao bookDao = new BookDao();
+		downloadInfo.setUserId(user.getUserId());
+		downloadInfo.setDownloadTime(new Date());
+		downloadInfo.setBookId(bookDao.getBookId(file.getId()));
+
+		DownloadInfoDao downloadInfoDao = new DownloadInfoDao();
+		downloadInfoDao.insertDownloadInfo(downloadInfo);
+
+		resp.setContentType(file.getContentType());
+		resp.setContentLength(file.getData().length);
+		String headerKey = "Content-Disposition";
+		String headerValue = String.format("attachment; filename=\"%s\"",
+				file.getName() + file.getId());
+		resp.setHeader(headerKey, headerValue);
+		resp.getOutputStream().write(file.getData());
 	}
 }

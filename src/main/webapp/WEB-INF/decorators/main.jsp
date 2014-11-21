@@ -65,6 +65,9 @@ body {
 	color: red;
 	display: block;
 }
+.navbar-fixed-top{
+	background-color:#005959;
+}
 </style>
 </head>
 <body>
@@ -170,11 +173,8 @@ body {
 	<!-- Sidebar ends here -->
 	<decorator:body />
 
-	<div class="col-md-10 col-md-offset-1 navbar navbar-fixed-bottom">
-		<hr />
-		<p align="center">
+	<div class="col-md-12 navbar navbar-fixed-bottom" style="background-color:#005959; color: white;text-align:center; padding-top:12px;">
 			&copy; All Rights Reserved by <b>IIT Jx</b>
-		</p>
 	</div>
 	<script type="text/javascript">
 		$(document)
