@@ -6,12 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>PDFBookStore | Books</title>
-<style type="text/css">
-img {
-	height: 300px;
-	width: 300px;
-}
-</style>
 </head>
 
 <body>
@@ -25,9 +19,9 @@ img {
 				<div class="col-md-4">
 					<div class="thumbnail">
 						<img src="image?id=<c:url value="${book.getImageId()}"/>"
-							alt="Book Cover" />
+							alt="Book Cover"/>
 						<div class="caption">
-							<h3 class="img-heading">${book.getBookName()}</h3>
+							<b class="img-heading">${book.getBookName()}</b>
 							<p>
 								<b>Author</b>: ${book.getAuthorName()}<br /> <b>Category</b>:
 								${book.getCategory()}
@@ -58,5 +52,13 @@ img {
 			</ul>
 		</div>
 	</div>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("img").css({
+			height: 160,
+			width: 220
+		});
+	});
+	</script>
 </body>
 </html>

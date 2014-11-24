@@ -8,23 +8,25 @@
 <title>PDFBookStore| ${book.getBookName()}</title>
 <style>
 td {
+	font-size: 14px;
+}
+.book-title {
 	font-size: 16px;
 }
 </style>
 </head>
 <body>
 	<br />
-	<br />
 	<div class="row">
-		<div class="col-md-offset-2 col-md-7">
-			<div class="panel panel-info">
+		<div class="col-md-offset-1 col-md-5">
+			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3>${book.getBookName()}</h3>
+					<b class="book-title">${book.getBookName()}</b>
 				</div>
 				<div class="panel-body">
 					<div style="text-align: center;">
 						<img src="image?id=<c:url value="${book.getImageId()}"/>"
-							height="240" width="280" />
+							height="200" width="240" />
 					</div>
 					<br />
 					<table class="table table-striped">
@@ -33,12 +35,16 @@ td {
 							<td>: ${book.getAuthorName() }</td>
 						</tr>
 						<tr>
+							<td><label>Category</label></td>
+							<td>: ${book.getCategory()}</td>
+						</tr>
+						<tr>
 							<td><label>ISBN</label></td>
 							<td>: ${book.getISBN()}</td>
 						</tr>
 						<tr>
 							<td><label>Description</label></td>
-							<td>: ${book.getDescription()}</td>
+							<td>: ${book.getDescription().length() == 0 ? "Not available": book.getDescription()}</td>
 						</tr>
 						<tr>
 							<td colspan="2"><a

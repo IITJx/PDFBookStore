@@ -28,7 +28,7 @@ public class GraphService {
 		}
 		JFreeChart barChart = ChartFactory.createBarChart(graphTitle, xLabel,
 				yLabel, dataset, PlotOrientation.VERTICAL, true, true, false);
-		return convertToImage(barChart);
+		return convertToImage(barChart, 600, 450);
 	}
 
 	public byte[] createPieChart(String graphTitle, List<String> labels,
@@ -39,11 +39,11 @@ public class GraphService {
 		}
 		JFreeChart pieChart = ChartFactory.createPieChart(graphTitle, dataset,
 				true, true, false);
-		return convertToImage(pieChart);
+		return convertToImage(pieChart, 500, 450);
 	}
 
-	public byte[] convertToImage(JFreeChart chart) {
-		BufferedImage bufferedImage = chart.createBufferedImage(450, 400);
+	public byte[] convertToImage(JFreeChart chart, int width, int height) {
+		BufferedImage bufferedImage = chart.createBufferedImage(width, height);
 		ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 		byte[] image = {};
 		try {

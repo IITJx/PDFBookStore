@@ -12,8 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10">
-			<br>
-			<br>
+				<br> <br>
 				<c:if test="${loggedUser!=null}">
 					<div class="alert alert-success message">
 						<a class="close" data-dismiss="alert">&times;</a>Welcome, <b>${loggedUser}</b>
@@ -23,8 +22,17 @@
 				<c:if test="${logoutMessage!=null}">
 					<div class="alert alert-success message">
 						<a class="close" data-dismiss="alert">&times;</a>${logoutMessage}
-						<% request.getSession().removeAttribute("logoutMessage");%>
+						<%
+							request.getSession().removeAttribute("logoutMessage");
+						%>
 					</div>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							setTimeout(function() {
+								location.reload()
+							}, 3000);
+						});
+					</script>
 				</c:if>
 				<c:if test="${registrationSuccess!=null}">
 					<div class="alert alert-success message">

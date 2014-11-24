@@ -46,9 +46,8 @@ public class EditBookController extends HttpServlet {
 		book.setDescription(request.getParameter(DESCRIPTION_PARAMETER));
 		book.setISBN(request.getParameter(ISBN_PARAMETER));
 		bookDao.updateBook(book);
-		request.setAttribute("message", "Book has been updated successfully");
-		getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/added-books.jsp").forward(
-						request, response);
+		request.getSession().setAttribute("message",
+				"Book has been updated successfully");
+		response.sendRedirect("added-books");
 	}
 }

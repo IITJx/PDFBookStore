@@ -17,11 +17,9 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/scripts/jquery.js"/>"></script>
 <script type="text/javascript"
-	src="<c:url value="/resources/scripts/jquery-ui.js"/>"></script>
+	src="<c:url value="/resources/scripts/jquery-ui.min.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/scripts/popover.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/scripts/docs.min.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/scripts/bootstrap.js"/>"></script>
 <script type="text/javascript"
@@ -65,15 +63,13 @@ body {
 	color: red;
 	display: block;
 }
-.navbar-fixed-top{
-	background-color:#005959;
-}
 </style>
 </head>
 <body>
 	<!-- Navbar Top
 	 =====================================================-->
-	<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar navbar-inverse navbar-fixed-top"
+		style="background-image: url('<c:url value="/resources/images/background.png"/>');">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="home" style="color: white;">BookStore</a>
@@ -98,9 +94,9 @@ body {
 				</c:if>
 				<c:if test="${session!=null}">
 					<div class="navbar-form pull-right">
-						<a href="#"
-							class="dropdown-toggle btn btn-primary" data-toggle="dropdown">
-							${user.getUserName()} <b class="caret"></b>
+						<a href="#" class="dropdown-toggle btn btn-primary"
+							data-toggle="dropdown"> ${user.getUserName()} <b
+							class="caret"></b>
 						</a>
 
 						<ul class="dropdown-menu">
@@ -173,8 +169,9 @@ body {
 	<!-- Sidebar ends here -->
 	<decorator:body />
 
-	<div class="col-md-12 navbar navbar-fixed-bottom" style="background-color:#005959; color: white;text-align:center; padding-top:12px;">
-			&copy; All Rights Reserved by <b>IIT Jx</b>
+	<div class="col-md-12 navbar navbar-fixed-bottom"
+		style="background-image: url('<c:url value="/resources/images/background.png"/>'); color: white; text-align: center; padding-top: 12px;">
+		&copy; All Rights Reserved by <b>IIT Jx</b>
 	</div>
 	<script type="text/javascript">
 		$(document)

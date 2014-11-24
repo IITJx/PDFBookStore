@@ -24,20 +24,20 @@
 						<div class="panel-body">
 							<table class="table table-striped">
 								<tr>
-									<td>Author :</td>
-									<td>${book.getAuthorName() }</td>
+									<td>Author</td>
+									<td>: ${book.getAuthorName() }</td>
 								</tr>
 								<tr>
-									<td>Category :</td>
-									<td>${book.getCategory() }</td>
+									<td>Category</td>
+									<td>: ${book.getCategory() }</td>
 								</tr>
 								<tr>
-									<td>Description :</td>
-									<td>${book.getDescription() }</td>
+									<td>Description</td>
+									<td>: ${book.getDescription() }</td>
 								</tr>
 								<tr>
 									<td>Access Count</td>
-									<td>${accessCount }</td>
+									<td>: ${accessCount }</td>
 								</tr>
 							</table>
 							<div class="pull-right">

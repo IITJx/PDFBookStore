@@ -40,10 +40,8 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">Account Type</label>
 						<div class="col-md-4">
-							<select class="form-control" name="type">
-								<option>Publisher</option>
-								<option>User</option>
-							</select>
+								<label class="radio-inline"><input type="radio" name="type" value="User" checked="checked"> User</label>
+								<label class="radio-inline"><input type="radio" name="type" value="Publisher"> Publisher</label>
 						</div>
 					</div>
 					<div class="form-group">
