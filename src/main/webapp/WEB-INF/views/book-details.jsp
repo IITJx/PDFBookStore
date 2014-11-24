@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PDF Store| ${book.getBookName()}</title>
+<title>PDFBookStore| ${book.getBookName()}</title>
 <style>
 td {
 	font-size: 16px;
