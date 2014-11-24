@@ -38,6 +38,7 @@ dependencies {
 	compile "org.jfree:jcommon:1.0.23"
 	compile "commons-codec:commons-codec:1.9"
 	compile "commons-io:commons-io:2.4"
+	compile 'org.jfree:jfreechart:1.0.19'
 	testCompile "junit:junit:4.11"
 }
 war {

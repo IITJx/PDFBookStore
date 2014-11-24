@@ -4,11 +4,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>PDFBookStore | Dashboard</title>
+<title>PDFStore | View Bar Chart</title>
 </head>
 <body>
 	<div class="container">
-		<div class="row"></div>
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<h1>Bar Chart</h1>
+				<hr />
+				<div class="col-md-offset-1">
+					<img src="barchart" alt="Bar Chart" />
+				</div>
+
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {

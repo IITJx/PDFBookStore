@@ -153,10 +153,10 @@ body {
 						<li><a href="#">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-line-chart"></i> Line Charts
 						</a></li>
-						<li><a href="#">&nbsp;&nbsp;&nbsp;<i
+						<li><a href="view-bar-chart">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-bar-chart"></i> Bar Charts
 						</a></li>
-						<li><a href="#">&nbsp;&nbsp;&nbsp;<i
+						<li><a href="view-pie-chart">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-pie-chart"></i> Pie Charts
 						</a></li>
 					</ul></li>

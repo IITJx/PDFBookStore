@@ -1,5 +1,6 @@
 package com.iitjx.pdfbookstore.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -94,25 +95,6 @@ public class BookDao {
 			return null;
 	}
 
-	public List<String> getCategoryGroupByCategory() {
-		openNewSession();
-		Query query = session
-				.createSQLQuery("select category from book group by category");
-		List<String> list = (List<String>) query.list();
-		closeCurrentSession();
-		return list;
-	}
-
-	public List<Integer> getAccessCountGroupByCategory(String publisher) {
-		openNewSession();
-		Query query = session
-				.createSQLQuery("select sum(accessCount) from book where uploader = \""
-						+ publisher + "\"  group by category");
-		List<Integer> list = (List<Integer>) query.list();
-		closeCurrentSession();
-		return list;
-	}
-
 	public List<Book> getPagedBookList(int page, int max) {
 		openNewSession();
 		Criteria criteria = session.createCriteria(Book.class);
@@ -146,6 +128,23 @@ public class BookDao {
 		Book book = (Book) criteria.list().get(0);
 		closeCurrentSession();
 		return book.getBookId();
+	}
+
+	public List<Object[]> getBookNameAndAccessCount(int userId, String from,
+			String to) {
+		openNewSession();
+		Query query = session
+				.createSQLQuery("select bookName, count(accessId) from book, bookAccess where "
+						+ "book.bookId = bookaccess.bookId and uploaderId = :userId "
+						+ "and accessTime between "
+						+ from
+						+ " and "
+						+ to
+						+ " group by bookAccess.bookId");
+		query.setInteger("userId", userId);
+		List<Object[]> objectList = query.list();
+		closeCurrentSession();
+		return objectList;
 	}
 
 }

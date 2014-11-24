@@ -23,6 +23,7 @@
 				<c:if test="${logoutMessage!=null}">
 					<div class="alert alert-success message">
 						<a class="close" data-dismiss="alert">&times;</a>${logoutMessage}
+						<% request.getSession().removeAttribute("logoutMessage");%>
 					</div>
 				</c:if>
 				<c:if test="${registrationSuccess!=null}">
