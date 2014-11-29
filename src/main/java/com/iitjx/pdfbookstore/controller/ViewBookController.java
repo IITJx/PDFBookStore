@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import com.iitjx.pdfbookstore.dao.BookAccessDao;
 import com.iitjx.pdfbookstore.dao.BookDao;
+import com.iitjx.pdfbookstore.dao.DownloadInfoDao;
 import com.iitjx.pdfbookstore.domain.Book;
 
 @WebServlet("/view-book")
@@ -41,7 +42,10 @@ public class ViewBookController extends HttpServlet {
 			Book book = bookDAO.getBookById(id);
 			BookAccessDao bookAccessDao = new BookAccessDao();
 			int accessCount = bookAccessDao.getAccessCount(id);
+			DownloadInfoDao downloadInfoDao = new DownloadInfoDao();
+			int downloadCount = downloadInfoDao.getDownloadCount(id);
 			req.setAttribute("accessCount", accessCount);
+			req.setAttribute("downloadCount", downloadCount);
 			req.setAttribute("book", book);
 			log.debug("serving post request for {}", book.getBookName());
 			getServletContext().getRequestDispatcher(

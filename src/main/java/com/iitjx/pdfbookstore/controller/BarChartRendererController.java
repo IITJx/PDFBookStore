@@ -24,11 +24,27 @@ public class BarChartRendererController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		User user = (User) req.getSession().getAttribute("user");
+		String chartType = req.getParameter("chart");
+		String title = "";
+		String xAxisLabel = "";
+		String yAxisLabel = "";
 		BookDao bookDao = new BookDao();
-		List<Object[]> objectList = bookDao.getBookNameAndAccessCount(
-				user.getUserId(), "date_sub(now(),INTERVAL 1 WEEK)", "now()");
 		List<String> bookNames = new ArrayList<String>();
 		List<Integer> accessCounts = new ArrayList<Integer>();
+		List<Object[]> objectList;
+		if (chartType.matches("access")) {
+			title = "Access Count of Books";
+			xAxisLabel = "Book Name";
+			yAxisLabel = "Access Count";
+			objectList = bookDao.getBookNameAndAccessCount(user.getUserId(),
+					"date_sub(now(),INTERVAL 1 WEEK)", "now()");
+		} else {
+			title = "Download Count of Books";
+			xAxisLabel = "Book Name";
+			yAxisLabel = "Download Count";
+			objectList = bookDao.getBookNameAndDownloadCount(user.getUserId(),
+					"date_sub(now(),INTERVAL 1 WEEK)", "now()");
+		}
 		for (Object[] bookNameAndCount : objectList) {
 			bookNames.add((String) bookNameAndCount[0]);
 			accessCounts.add(((BigInteger) bookNameAndCount[1]).intValue());
@@ -44,10 +60,9 @@ public class BarChartRendererController extends HttpServlet {
 					.intValue());
 		}
 		GraphService graphService = new GraphService();
-		byte[] barImageBytes = graphService.createBarChart(
-				"Access Count of Books", bookNames, accessCounts,
-				bookNamesLastWeek, accessCountsLastWeek, "Book Name",
-				"Access Count");
+		byte[] barImageBytes = graphService.createBarChart(title, bookNames,
+				accessCounts, bookNamesLastWeek, accessCountsLastWeek,
+				xAxisLabel, yAxisLabel);
 		resp.setContentType("image/png");
 		resp.getOutputStream().write(barImageBytes);
 	}

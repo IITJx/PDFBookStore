@@ -147,4 +147,21 @@ public class BookDao {
 		return objectList;
 	}
 
+	public List<Object[]> getBookNameAndDownloadCount(int userId, String from,
+			String to) {
+		openNewSession();
+		Query query = session
+				.createSQLQuery("select bookName, count(downloadId) from book, downloadinfo where "
+						+ "book.bookId = downloadinfo.bookId and uploaderId = :userId "
+						+ "and downloadTime between "
+						+ from
+						+ " and "
+						+ to
+						+ " group by downloadinfo.bookId");
+		query.setInteger("userId", userId);
+		List<Object[]> objectList = query.list();
+		closeCurrentSession();
+		return objectList;
+	}
+
 }

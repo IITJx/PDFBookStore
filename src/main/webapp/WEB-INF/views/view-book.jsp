@@ -39,6 +39,10 @@
 									<td>Access Count</td>
 									<td>: ${accessCount }</td>
 								</tr>
+								<tr>
+									<td>Download Count</td>
+									<td>: ${downloadCount }</td>
+								</tr>
 							</table>
 							<div class="pull-right">
 								<form method="post" action="delete-book">

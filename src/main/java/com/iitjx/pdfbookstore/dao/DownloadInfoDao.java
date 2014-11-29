@@ -3,6 +3,7 @@ package com.iitjx.pdfbookstore.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -42,5 +43,14 @@ public class DownloadInfoDao {
 		List<DownloadInfo> list = criteria.list();
 		closeCurrentSession();
 		return list;
+	}
+
+	public int getDownloadCount(int bookId) {
+		openNewSession();
+		Criteria criteria = session.createCriteria(DownloadInfo.class);
+		criteria.add(Restrictions.eq("bookId", bookId));
+		int downloadCount = criteria.list().size();
+		closeCurrentSession();
+		return downloadCount;
 	}
 }

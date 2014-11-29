@@ -11,7 +11,7 @@ public class DownloadInfo {
 	private int downloadId;
 	private int bookId;
 	private int userId;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date downloadTime;
 
 	public int getDownloadId() {
