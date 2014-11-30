@@ -1,6 +1,9 @@
 package com.iitjx.pdfbookstore.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +15,10 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.iitjx.pdfbookstore.service.*;
-import com.iitjx.pdfbookstore.domain.*;
-import com.iitjx.pdfbookstore.dao.*;
+import com.iitjx.pdfbookstore.dao.UserDao;
+import com.iitjx.pdfbookstore.domain.Book;
+import com.iitjx.pdfbookstore.domain.User;
+import com.iitjx.pdfbookstore.service.LoginService;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
@@ -52,6 +56,8 @@ public class LoginController extends HttpServlet {
 			session.setMaxInactiveInterval(0);
 			session.setAttribute("session", true);
 			session.setAttribute("user", user);
+			List<Book> wishBooks = new ArrayList<Book>();
+			session.setAttribute("wishBooks", wishBooks);
 			request.setAttribute("loggedUser", user.getUserName());
 			getServletContext().getRequestDispatcher("/WEB-INF/views/home.jsp")
 					.forward(request, response);

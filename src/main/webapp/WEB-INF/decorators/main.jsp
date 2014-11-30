@@ -94,6 +94,8 @@ body {
 				</c:if>
 				<c:if test="${session!=null}">
 					<div class="navbar-form pull-right">
+						<a href="wishlist" class="btn btn-info">Wish List <span class="badge">${wishBooks.size()}</span></a>
+						&nbsp;&nbsp;&nbsp;
 						<a href="#" class="dropdown-toggle btn btn-primary"
 							data-toggle="dropdown"> ${user.getUserName()} <b
 							class="caret"></b>

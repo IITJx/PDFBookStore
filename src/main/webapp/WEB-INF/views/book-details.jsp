@@ -50,8 +50,8 @@ td {
 							<td colspan="2"><a
 								href="download?id=<c:url value="${book.getPdfId()}"/>"
 								class="btn btn-primary"><span
-									class="glyphicon glyphicon-download-alt"></span> Download</a> <a href="#" class="btn btn-warning"><i
-									class="fa fa-share"></i> Share</a></td>
+									class="glyphicon glyphicon-download-alt"></span> Download</a> <a href="add-to-wishlist?id=${book.getBookId()}" class="btn btn-info"><i
+									class="fa fa-eye"></i> Add to Wish List</a></td>
 						</tr>
 					</table>
 				</div>
