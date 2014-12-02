@@ -27,6 +27,8 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#sideBar").show();
+			$("#dashboard").addClass("active");
+			$("#reports").addClass("active");
 			$("input:radio[name=type]").click(function() {
 				var value = $(this).val();
 	            $('#chartImage').attr('src', "piechart?chart="+value);

@@ -105,6 +105,7 @@
 			$("#sideBar").show();
 			$(".active").removeClass();
 			$("#dashBooks").parent().addClass("active");
+			$("#dashboard").addClass("active");
 		});
 	</script>
 </body>

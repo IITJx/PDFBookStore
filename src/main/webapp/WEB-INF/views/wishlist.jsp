@@ -53,6 +53,8 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("th,td").css("text-align", "center");
+			$(".active").removeClass();
+			$("#books").addClass("active");
 		});
 	</script>
 </body>

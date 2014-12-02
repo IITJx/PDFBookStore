@@ -54,6 +54,8 @@
 	</div>
 	<script type="text/javascript">
 	$(document).ready(function(){
+		$(".active").removeClass();
+		$("#books").addClass("active");
 		$("img").css({
 			height: 160,
 			width: 220

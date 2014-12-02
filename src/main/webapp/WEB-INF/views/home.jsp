@@ -53,5 +53,11 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".active").removeClass();
+			$("#home").addClass("active");
+		});
+	</script>
 </body>
 </html>

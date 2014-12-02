@@ -58,7 +58,12 @@ td {
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".active").removeClass();
+			$("#books").addClass("active");
+		});
+	</script>
 
 </body>
 </html>

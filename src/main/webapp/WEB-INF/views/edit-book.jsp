@@ -83,6 +83,7 @@
 		$(document).ready(function() {
 			$("#sideBar").show();
 			$(".active").removeClass();
+			$("#dashboard").addClass("active");
 			$("#dashBooks").parent().addClass("active");
 		});
 	</script>

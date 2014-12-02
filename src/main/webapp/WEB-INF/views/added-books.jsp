@@ -54,6 +54,7 @@
 			$("#sideBar").show();
 			$(".active").removeClass();
 			$("#dashBooks").parent().addClass("active");
+			$("#dashboard").addClass("active");
 			$("th,td").css("text-align", "center");
 		});
 	</script>

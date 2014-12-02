@@ -29,15 +29,15 @@
 =====================================-->
 
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap/css/bootstrap.css"/>" />
+	href="<c:url value="/resources/css/bootstrap/css/bootstrap.min.css"/>" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/dashboard.css"/>" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/jquery-ui.theme.min.css"/>" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/jquery-ui.min.css"/>" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/bootstrap/css/bootstrap-theme.css"/>" />
+<!--<link rel="stylesheet"
+	href="<c:url value="/resources/css/bootstrap/css/bootstrap-theme.css"/>" />-->
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/font-awesome/css/font-awesome.css"/>" />
 <style type="text/css">
@@ -69,20 +69,20 @@ body {
 	<!-- Navbar Top
 	 =====================================================-->
 	<div class="navbar navbar-inverse navbar-fixed-top"
-		style="background-image: url('<c:url value="/resources/images/background.png"/>');">
+		style="">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="home" style="color: white;">BookStore</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="home">Home</a></li>
-					<li><a href="books">Books</a></li>
-					<li><a href="#">Contact</a></li>
+					<li id="home"><a href="home">Home</a></li>
+					<li id="books"><a href="books">Books</a></li>
+					<li id="contact"><a href="#">Contact</a></li>
 					<c:if test="${user.getType()=='Publisher'}">
-						<li><a href="dashboard">Dashboard</a></li>
+						<li id="dashboard"><a href="dashboard">Dashboard</a></li>
 					</c:if>
-					<li><a href="#">Help</a></li>
+					<li id="help"><a href="#">Help</a></li>
 				</ul>
 				<c:if test="${session==null}">
 					<div class="pull-right">
@@ -129,7 +129,7 @@ body {
 	<c:if test="${session==true && user.getType()=='Publisher'}">
 		<div class="sidebar" id="sideBar">
 			<ul class="nav nav-sidebar">
-				<li class="active"><a href="dashboard">Overview</a></li>
+				<li id="overview"><a href="dashboard">Overview</a></li>
 				<li><a href="#" data-toggle="collapse" data-target="#bookMenu"
 					id="dashBooks">Books &nbsp;<span
 						class="fa fa-angle-double-right" id="dashDropdown"></span></a>
@@ -140,17 +140,11 @@ body {
 						<li><a href="added-books">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-list"></i> My Added Books
 						</a></li>
-						<li><a href="#">&nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i>
-								Book Summary
-						</a></li>
 					</ul></li>
-				<li><a href="#" data-toggle="collapse"
+				<li id="reports"><a href="#" data-toggle="collapse"
 					data-target="#reportMenu" id="dashReport">Reports &nbsp;<i
 						class="fa fa-angle-double-right" id="reportDropdown"></i></a>
 					<ul class="nav collapse" id="reportMenu">
-						<li><a href="#">&nbsp;&nbsp;&nbsp;<i
-								class="fa fa-line-chart"></i> Line Charts
-						</a></li>
 						<li><a href="view-bar-chart">&nbsp;&nbsp;&nbsp;<i
 								class="fa fa-bar-chart"></i> Bar Charts
 						</a></li>
@@ -158,8 +152,6 @@ body {
 								class="fa fa-pie-chart"></i> Pie Charts
 						</a></li>
 					</ul></li>
-
-				<li><a href="#">Export</a></li>
 			</ul>
 		</div>
 		<script type="text/javascript">
@@ -171,9 +163,10 @@ body {
 	<!-- Sidebar ends here -->
 	<decorator:body />
 
-	<div class="col-md-12 navbar navbar-fixed-bottom"
-		style="background-image: url('<c:url value="/resources/images/background.png"/>'); color: white; text-align: center; padding-top: 12px;">
+	<div class="col-md-12 navbar-inverse navbar-fixed-bottom" style="padding-top:10px; padding-bottom:10px; color: white;">
+		<div class="row" align="center">
 		&copy; All Rights Reserved by <b>IIT Jx</b>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document)

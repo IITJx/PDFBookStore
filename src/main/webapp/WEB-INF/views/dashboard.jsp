@@ -13,7 +13,11 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#sideBar").show();
+			$(".active").removeClass();
+			$("#dashboard").addClass("active");
+			$("#overview").addClass("active");
 		});
+		
 	</script>
 </body>
 </html>
