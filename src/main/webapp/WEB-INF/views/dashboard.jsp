@@ -8,7 +8,34 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row"></div>
+		<div class="col-md-10 col-md-offset-1">
+		<h1>Overview</h1>
+		<hr/>
+		<c:if test="${books.size()!=0 }">
+					<table class="table table-striped" border="1">
+						<thead>
+							<tr>
+								<th>Book Name</th>
+								<th>Author</th>
+								<th>Description</th>
+								<th>Total Access</th>
+								<th>Total Downloads</th>
+							</tr>
+						</thead>
+						<c:forEach var="book" items="${requestScope.books }" begin="0" varStatus="count">
+							<tr>
+								<td>${book.getBookName()}</td>
+								<td>${book.getAuthorName()}</td>
+								<td>${book.getDescription()}</td>
+								<td>${accessCounts.get(count.index) }</td>
+								<td>${downloadCounts.get(count.index) }</td>
+							</tr>
+						</c:forEach>
+					</table>
+		</c:if>
+		
+		
+		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -16,6 +43,7 @@
 			$(".active").removeClass();
 			$("#dashboard").addClass("active");
 			$("#overview").addClass("active");
+			$("th,td").css("text-align","center");
 		});
 		
 	</script>
