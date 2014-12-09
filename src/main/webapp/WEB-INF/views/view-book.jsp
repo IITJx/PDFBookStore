@@ -12,39 +12,48 @@
 <body>
 	<br>
 	<br>
-	<br>
 	<div class="row">
-		<div class="container">
+		<div class="col-md-8 col-md-offset-2">
 			<c:if test="${book!=null }">
-				<div class="col-md-5 col-md-offset-3">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<h1>${book.getBookName()}</h1>
-						</div>
-						<div class="panel-body">
-							<table class="table table-striped">
-								<tr>
-									<td>Author</td>
-									<td>: ${book.getAuthorName() }</td>
-								</tr>
-								<tr>
-									<td>Category</td>
-									<td>: ${book.getCategory() }</td>
-								</tr>
-								<tr>
-									<td>Description</td>
-									<td>: ${book.getDescription() }</td>
-								</tr>
-								<tr>
-									<td>Access Count</td>
-									<td>: ${accessCount }</td>
-								</tr>
-								<tr>
-									<td>Download Count</td>
-									<td>: ${downloadCount }</td>
-								</tr>
-							</table>
-							<div class="pull-right">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h1>Book Details</h1>
+				</div>
+				<div class="panel-body">
+					<img src="image?id=<c:url value="${book.getImageId()}"/>"
+						height="250px" width="300px" class="col-md-5 pull-right" />
+					<div class="col-md-7">
+						<table class="table table-striped">
+							<tr>
+								<th>Book Name</th>
+								<td>: ${book.getBookName()}</td>
+							<tr />
+							<tr>
+								<th>Author</th>
+								<td>: ${book.getAuthorName() }</td>
+							<tr />
+							<tr>
+								<th>ISBN No</th>
+								<td>: ${book.getISBN()}</td>
+							<tr />
+							<tr>
+								<th>Category</th>
+								<td>: ${book.getCategory()}</td>
+							<tr />
+							<tr>
+								<th>Description</th>
+								<td>: ${book.getDescription().length() == 0 ? "Not available": book.getDescription()}</td>
+							<tr />
+							<tr>
+								<th>Access Count</th>
+								<td>: ${accessCount }</td>
+							</tr>
+							<tr>
+								<th>Download Count</th>
+								<td>: ${downloadCount }</td>
+							</tr>
+						</table>
+						<div class="pull-right">
 								<form method="post" action="delete-book">
 									<a class="btn btn-primary"
 									href="edit-book?id=${book.getBookId() }"><i class="fa fa-edit"></i> Edit</a>
@@ -54,11 +63,10 @@
 										<i class="fa fa-trash"></i> Delete
 									</button>
 								</form>
-							</div>
 						</div>
 					</div>
-
 				</div>
+			</div>
 			</c:if>
 		</div>
 	</div>

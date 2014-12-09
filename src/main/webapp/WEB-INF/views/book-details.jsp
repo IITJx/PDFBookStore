@@ -10,6 +10,7 @@
 td {
 	font-size: 14px;
 }
+
 .book-title {
 	font-size: 16px;
 }
@@ -18,49 +19,56 @@ td {
 <body>
 	<br />
 	<div class="row">
-		<div class="col-md-offset-1 col-md-5">
-			<div class="panel panel-default">
+		<div class="col-md-offset-1 col-md-8">
+			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<b class="book-title">${book.getBookName()}</b>
+					<h1>Book Details</h1>
 				</div>
 				<div class="panel-body">
-					<div style="text-align: center;">
-						<img src="image?id=<c:url value="${book.getImageId()}"/>"
-							height="200" width="240" />
+					<img src="image?id=<c:url value="${book.getImageId()}"/>"
+						height="250px" width="300px" class="col-md-5 pull-right" />
+					<div class="col-md-7">
+						<table class="table table-striped">
+							<tr>
+								<th>Book Name</th>
+								<td>: ${book.getBookName()}</td>
+							<tr />
+							<tr>
+								<th>Author</th>
+								<td>: ${book.getAuthorName() }</td>
+							<tr />
+							<tr>
+								<th>ISBN No</th>
+								<td>: ${book.getISBN()}</td>
+							<tr />
+							<tr>
+								<th>Category</th>
+								<td>: ${book.getCategory()}</td>
+							<tr />
+							<tr>
+								<th>Description</th>
+								<td>: ${book.getDescription().length() == 0 ? "Not available": book.getDescription()}</td>
+							<tr />
+							<tr>
+								<td colspan="2"><a
+									href="download?id=<c:url value="${book.getPdfId()}"/>"
+									class="btn btn-primary"><span
+										class="glyphicon glyphicon-download-alt"></span> Download</a> <a
+									href="add-to-wishlist?id=${book.getBookId()}"
+									class="btn btn-info"><i class="fa fa-eye"></i> Add to Wish
+										List</a></td>
+							</tr>
+						</table>
+
 					</div>
-					<br />
-					<table class="table table-striped">
-						<tr>
-							<td><label>Author</label></td>
-							<td>: ${book.getAuthorName() }</td>
-						</tr>
-						<tr>
-							<td><label>Category</label></td>
-							<td>: ${book.getCategory()}</td>
-						</tr>
-						<tr>
-							<td><label>ISBN</label></td>
-							<td>: ${book.getISBN()}</td>
-						</tr>
-						<tr>
-							<td><label>Description</label></td>
-							<td>: ${book.getDescription().length() == 0 ? "Not available": book.getDescription()}</td>
-						</tr>
-						<tr>
-							<td colspan="2"><a
-								href="download?id=<c:url value="${book.getPdfId()}"/>"
-								class="btn btn-primary"><span
-									class="glyphicon glyphicon-download-alt"></span> Download</a> <a href="add-to-wishlist?id=${book.getBookId()}" class="btn btn-info"><i
-									class="fa fa-eye"></i> Add to Wish List</a></td>
-						</tr>
-					</table>
 				</div>
 			</div>
+
 		</div>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$(".active").removeClass();
+			
 			$("#books").addClass("active");
 		});
 	</script>

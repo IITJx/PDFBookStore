@@ -39,12 +39,15 @@
 									<form method="post" action="view-book">
 										<input type="hidden" name="bookId"
 											value="${book.getBookId() }"> <input type="submit"
-											value="View" class="btn btn-default">
+											value="View" class="btn btn-success">
 									</form>
 								</td>
 							</tr>
 						</c:forEach>
 					</table>
+				</c:if>
+				<c:if test="${books.size()==0}">
+					<h3>Sorry, you have not added any book yet.</h3>
 				</c:if>
 			</div>
 		</div>
