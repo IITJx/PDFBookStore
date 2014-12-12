@@ -5,8 +5,8 @@ apply plugin: 'tomcat'
 
 buildscript {
     repositories {
+    	mavenLocal()
         mavenCentral()
-        mavenLocal()
     }
     dependencies {
         classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:0.9.9'
@@ -39,7 +39,8 @@ dependencies {
 	compile "commons-codec:commons-codec:1.9"
 	compile "commons-io:commons-io:2.4"
 	compile 'org.jfree:jfreechart:1.0.19'
-	testCompile "junit:junit:4.11"
+	testCompile 'junit:junit:4.11'
+	testCompile 'org.mockito:mockito-all:1.9.5'
 }
 war {
 	stopKey = 'foo'
