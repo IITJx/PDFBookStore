@@ -32,29 +32,34 @@ public class BarChartRendererController extends HttpServlet {
 		List<String> bookNames = new ArrayList<String>();
 		List<Integer> accessCounts = new ArrayList<Integer>();
 		List<Object[]> objectList;
+		List<Object[]> objectListLastWeek;
 		if (chartType.matches("access")) {
 			title = "Access Count of Books";
 			xAxisLabel = "Book Name";
 			yAxisLabel = "Access Count";
 			objectList = bookDao.getBookNameAndAccessCount(user.getUserId(),
 					"date_sub(now(),INTERVAL 1 WEEK)", "now()");
+			objectListLastWeek = bookDao.getBookNameAndAccessCount(user.getUserId(),
+					"date_sub(now(),INTERVAL 2 WEEK)",
+					"date_sub(now(),INTERVAL 1 WEEK)");
 		} else {
 			title = "Download Count of Books";
 			xAxisLabel = "Book Name";
 			yAxisLabel = "Download Count";
 			objectList = bookDao.getBookNameAndDownloadCount(user.getUserId(),
 					"date_sub(now(),INTERVAL 1 WEEK)", "now()");
+			objectListLastWeek = bookDao.getBookNameAndDownloadCount(user.getUserId(),
+					"date_sub(now(),INTERVAL 2 WEEK)",
+					"date_sub(now(),INTERVAL 1 WEEK)");
 		}
 		for (Object[] bookNameAndCount : objectList) {
 			bookNames.add((String) bookNameAndCount[0]);
 			accessCounts.add(((BigInteger) bookNameAndCount[1]).intValue());
 		}
-		objectList = bookDao.getBookNameAndAccessCount(user.getUserId(),
-				"date_sub(now(),INTERVAL 2 WEEK)",
-				"date_sub(now(),INTERVAL 1 WEEK)");
+				
 		List<String> bookNamesLastWeek = new ArrayList<String>();
 		List<Integer> accessCountsLastWeek = new ArrayList<Integer>();
-		for (Object[] bookNameAndCount : objectList) {
+		for (Object[] bookNameAndCount : objectListLastWeek) {
 			bookNamesLastWeek.add((String) bookNameAndCount[0]);
 			accessCountsLastWeek.add(((BigInteger) bookNameAndCount[1])
 					.intValue());
