@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+import com.iitjx.pdfbookstore.domain.Book;
 import com.iitjx.pdfbookstore.domain.DownloadInfo;
 
 public class DownloadInfoDao {
@@ -36,11 +37,12 @@ public class DownloadInfoDao {
 		closeCurrentSession();
 	}
 
-	public List<DownloadInfo> getDownloadInfo(int userId) {
+	public List<Object[]> getDownloadInfo(int userId) {
 		openNewSession();
-		Criteria criteria = session.createCriteria(DownloadInfo.class);
-		criteria.add(Restrictions.eq("userId", userId));
-		List<DownloadInfo> list = criteria.list();
+		Query query = session.createSQLQuery("select distinct book.bookId, bookName, authorName,  pdfId, downloadTime from book, downloadInfo"+
+		" where book.bookId=downloadInfo.bookId and userId = :userId order by downloadTime desc");
+		query.setInteger("userId", userId);
+		List<Object[]> list = query.list();
 		closeCurrentSession();
 		return list;
 	}

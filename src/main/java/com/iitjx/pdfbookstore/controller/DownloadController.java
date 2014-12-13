@@ -28,16 +28,18 @@ public class DownloadController extends HttpServlet {
 		FileDao fileDao = new FileDao();
 		File file = fileDao.getFile(fileId);
 
-		DownloadInfo downloadInfo = new DownloadInfo();
 		User user = (User) req.getSession().getAttribute("user");
 		BookDao bookDao = new BookDao();
-		downloadInfo.setUserId(user.getUserId());
-		downloadInfo.setDownloadTime(new Date());
-		downloadInfo.setBookId(bookDao.getBookId(file.getId()));
-
-		DownloadInfoDao downloadInfoDao = new DownloadInfoDao();
-		downloadInfoDao.insertDownloadInfo(downloadInfo);
-
+		int uploaderId = bookDao.getBookById(bookDao.getBookId(fileId))
+				.getUploader();
+		if (user.getUserId() != uploaderId) {
+			DownloadInfo downloadInfo = new DownloadInfo();
+			downloadInfo.setUserId(user.getUserId());
+			downloadInfo.setDownloadTime(new Date());
+			downloadInfo.setBookId(bookDao.getBookId(file.getId()));
+			DownloadInfoDao downloadInfoDao = new DownloadInfoDao();
+			downloadInfoDao.insertDownloadInfo(downloadInfo);
+		}
 		resp.setContentType(file.getContentType());
 		resp.setContentLength(file.getData().length);
 		String headerKey = "Content-Disposition";
