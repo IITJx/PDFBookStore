@@ -19,7 +19,7 @@ td {
 <body>
 	<br />
 	<div class="row">
-		<div class="col-md-offset-1 col-md-8">
+		<div class="col-md-8">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<h1>Book Details</h1>
@@ -65,10 +65,36 @@ td {
 			</div>
 
 		</div>
+		<c:if test="${suggestedBook!=null}">
+		<div class="col-md-3">
+		<div style="text-align:center; background-color: #DD4814; font-size:14px; color:white; padding: 5px;">
+		<b>Similar category books...</b>
+		</div>
+			<div class="thumbnail">
+				<img id="img" src="image?id=<c:url value="${suggestedBook.getImageId()}"/>"
+							alt="Book Cover"/>
+						<div class="caption">
+							<b class="img-heading">${suggestedBook.getBookName()}</b>
+							<p>
+								<b>Author</b>: ${suggestedBook.getAuthorName()}<br /> <b>Category</b>:
+								${suggestedBook.getCategory()}
+							</p>
+							<form method="post" action="book-details">
+								<input type="hidden" name="id" value="${suggestedBook.getBookId()}" />
+								<button type="submit" class="btn btn-primary">
+									<span class="fa fa-expand"></span> Details
+								</button>
+								<a href="#" class="btn btn-warning"><span
+									class="fa fa-share"></span> Share</a>
+					</form>
+				</div>
+			</div>
+		</div>
+		</c:if>
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			
+			$("#img").css("height","210px");
 			$("#books").addClass("active");
 		});
 	</script>

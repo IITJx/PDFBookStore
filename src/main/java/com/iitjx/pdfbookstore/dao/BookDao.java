@@ -1,6 +1,5 @@
 package com.iitjx.pdfbookstore.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -164,4 +163,14 @@ public class BookDao {
 		return objectList;
 	}
 
+	public Book getSuggestedBook(int currentBookId, String category) {
+		openNewSession();
+		Criteria criteria = session.createCriteria(Book.class);
+		criteria.add(Restrictions.eq("category", category));
+		criteria.add(Restrictions.ne("bookId", currentBookId));
+		List<Book> books = (List<Book>) criteria.list();
+		closeCurrentSession();
+		return books.size() != 0 ? books.get((int) (Math.random() * (books
+				.size()))) : null;
+	}
 }

@@ -78,11 +78,14 @@ body {
 				<ul class="nav navbar-nav">
 					<li id="home"><a href="home">Home</a></li>
 					<li id="books"><a href="books">Books</a></li>
-					<li id="contact"><a href="#">Contact</a></li>
 					<c:if test="${user.getType()=='Publisher'}">
 						<li id="dashboard"><a href="dashboard">Dashboard</a></li>
 					</c:if>
-					<li id="help"><a href="#">Help</a></li>
+					<c:if test="${session!=null }">
+						<li id="history"><a href="history">History</a></li>
+					</c:if>
+					<li id="contact"><a href="contact">Contact</a></li>
+					<li id="help"><a href="help">Help</a></li>
 				</ul>
 				<c:if test="${session==null}">
 					<div class="pull-right">

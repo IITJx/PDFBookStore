@@ -52,10 +52,10 @@
 							<select name="category" class="form-control">
 								<option>Novel</option>
 								<option>Poetry</option>
-								<option>Travel</option>
-								<option>Mystery</option>
-								<option>Romance</option>
 								<option>Religious</option>
+								<option>Biography</option>
+								<option>Magazine</option>
+								<option>Text Book</option>
 							</select>
 						</div>
 					</div>

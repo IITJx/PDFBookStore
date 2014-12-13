@@ -18,22 +18,29 @@ public class BookController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		String type = request.getParameter("type");
 		BookDao bookDAO = new BookDao();
-		int total = bookDAO.getTotalBooks();
-		int max = 6;
-		int totalPages = (int) Math.ceil((double) total / max);
-		String pageNo = (String) request.getParameter("page");
-		if (pageNo == null)
-			pageNo = "1";
+		List<Book> books;
+		if (type != null) {
+			books = bookDAO.getBookBy("category", type);
+		} else {
 
-		int page = Integer.parseInt(pageNo);
-		if (page > totalPages)
-			page = 1;
-		List<Book> books = bookDAO.getPagedBookList(page, max);
-		request.setAttribute("page", page);
-		request.setAttribute("totalPages", totalPages);
+			int total = bookDAO.getTotalBooks();
+			int max = 6;
+			int totalPages = (int) Math.ceil((double) total / max);
+			String pageNo = (String) request.getParameter("page");
+			if (pageNo == null)
+				pageNo = "1";
+
+			int page = Integer.parseInt(pageNo);
+			if (page > totalPages)
+				page = 1;
+			books = bookDAO.getPagedBookList(page, max);
+			request.setAttribute("page", page);
+			request.setAttribute("totalPages", totalPages);
+		}
 		request.setAttribute("books", books);
-		getServletContext().getRequestDispatcher("/WEB-INF/views/books.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/views/books.jsp")
+				.forward(request, response);
 	}
-
 }

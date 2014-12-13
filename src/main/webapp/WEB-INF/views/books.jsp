@@ -9,12 +9,19 @@
 </head>
 
 <body>
-	<div class="container">
-		<div class="col-md-11">
-			<h1>Books</h1>
-			<hr />
-		</div>
-		<div class="row col-md-9">
+	<div class="row">
+		<div class="btn-group-vertical pull-left col-md-2" style="padding-top:80px; margin-left:-40px;">
+	      <button type="button" class="btn btn-default disabled ">Category</button>
+	      <a href="books?type=Novel" class="btn btn-default" style="border-top: 1px solid white;">Novel</a>
+	      <a href="books?type=Religious" class="btn btn-default" style="border-top: 1px solid white;">Religious</a>
+	      <a href="books?type=Magazine" class="btn btn-default" style="border-top: 1px solid white;">Magazine</a>
+	      <a href="books?type=Poetry" class="btn btn-default" style="border-top: 1px solid white;">Poetry</a>
+	      <a href="books?type=Biography" class="btn btn-default" style="border-top: 1px solid white;">Biography</a>
+	      <a href="books?type=Text Book" class="btn btn-default" style="border-top: 1px solid white;">Text Book</a>
+    	</div>
+	<div class="col-md-9">
+		<h1>Books</h1>
+		<hr />
 			<c:forEach var="book" items="${requestScope.books }">
 				<div class="col-md-4">
 					<div class="thumbnail">
@@ -38,8 +45,6 @@
 					</div>
 				</div>
 			</c:forEach>
-		</div>
-		<div class="row col-md-10">
 			<ul class="pager">
 				<c:if test="${page > 1 }">
 					<li class="previous"><a href="books?page=${page-1}"
@@ -50,7 +55,7 @@
 						style="border-color: #50A6E5">Next &rarr;</a></li>
 				</c:if>
 			</ul>
-		</div>
+	</div>
 	</div>
 	<script type="text/javascript">
 	$(document).ready(function(){

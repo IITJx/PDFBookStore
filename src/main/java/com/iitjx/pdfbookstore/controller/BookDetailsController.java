@@ -39,7 +39,10 @@ public class BookDetailsController extends HttpServlet {
 		if (reqId != null) {
 			int id = Integer.parseInt(reqId);
 			Book book = bookDAO.getBookById(id);
+			Book suggestedBook = bookDAO.getSuggestedBook(id,
+					book.getCategory());
 			req.setAttribute("book", book);
+			req.setAttribute("suggestedBook", suggestedBook);
 			log.debug("retrieved book: {}", book.getBookName());
 			if (req.getSession().getAttribute("user") == null) {
 				BookAccess bookAccess = new BookAccess();
