@@ -33,7 +33,8 @@ public class AuthenticationFilter implements Filter {
 					|| requestedURI.contains("view")
 					|| requestedURI.contains("add")
 					|| requestedURI.contains("download")
-					|| requestedURI.contains("wishlist"))
+					|| requestedURI.contains("wishlist")
+					||requestedURI.contains("history"))
 				((HttpServletResponse) response).sendRedirect("login");
 			else
 				filterChain.doFilter(request, response);
