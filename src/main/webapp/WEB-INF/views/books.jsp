@@ -45,7 +45,9 @@
 					</div>
 				</div>
 			</c:forEach>
-			<ul class="pager">
+	</div>
+	<div class="col-md-10 col-md-offset-2">
+		<ul class="pager">
 				<c:if test="${page > 1 }">
 					<li class="previous"><a href="books?page=${page-1}"
 						style="border-color: #50A6E5">&larr; Previous</a></li>
@@ -54,7 +56,7 @@
 					<li class="next"><a href="books?page=${page+1}"
 						style="border-color: #50A6E5">Next &rarr;</a></li>
 				</c:if>
-			</ul>
+		</ul>
 	</div>
 	</div>
 	<script type="text/javascript">

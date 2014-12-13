@@ -63,13 +63,16 @@ body {
 	color: red;
 	display: block;
 }
+
+textarea {
+	resize: none;
+}
 </style>
 </head>
 <body>
 	<!-- Navbar Top
 	 =====================================================-->
-	<div class="navbar navbar-inverse navbar-fixed-top"
-		style="">
+	<div class="navbar navbar-inverse navbar-fixed-top" style="">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="home" style="color: white;">BookStore</a>
@@ -97,9 +100,9 @@ body {
 				</c:if>
 				<c:if test="${session!=null}">
 					<div class="navbar-form pull-right">
-						<a href="wishlist" class="btn btn-success">Wish List <span class="badge">${wishBooks.size()}</span></a>
-						&nbsp;&nbsp;&nbsp;
-						<a href="#" class="dropdown-toggle btn btn-primary"
+						<a href="wishlist" class="btn btn-success">Wish List <span
+							class="badge">${wishBooks.size()}</span></a> &nbsp;&nbsp;&nbsp; <a
+							href="#" class="dropdown-toggle btn btn-primary"
 							data-toggle="dropdown"> ${user.getUserName()} <b
 							class="caret"></b>
 						</a>
@@ -166,9 +169,10 @@ body {
 	<!-- Sidebar ends here -->
 	<decorator:body />
 
-	<div class="col-md-12 navbar-inverse navbar-fixed-bottom" style="padding-top:10px; padding-bottom:10px; color: white;">
+	<div class="col-md-12 navbar-inverse navbar-fixed-bottom"
+		style="padding-top: 10px; padding-bottom: 10px; color: white;">
 		<div class="row" align="center">
-		&copy; All Rights Reserved by <b>IIT Jx</b>
+			&copy; All Rights Reserved by <b>IIT Jx</b>
 		</div>
 	</div>
 	<script type="text/javascript">

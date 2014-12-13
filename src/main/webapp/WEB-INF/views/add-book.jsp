@@ -27,8 +27,8 @@
 						<label for="bookName" class="control-label col-md-2">Book
 							Name</label>
 						<div class="col-md-3">
-							<td><input type="text" name="bookName" class="form-control"
-								placeholder="Enter Book Name..." required="true" /></td>
+							<input type="text" name="bookName" class="form-control"
+								placeholder="Enter Book Name..." required="true" />
 						</div>
 					</div>
 					<div class="form-group">
